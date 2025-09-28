@@ -1,3 +1,4 @@
+﻿@php use Illuminate\Support\Arr; @endphp
 <div class="row g-3">
     <div class="col-md-6">
         <label class="form-label">{{ __('Title') }}</label>
@@ -20,3 +21,16 @@
         <input class="form-control" name="button_url" value="{{ Arr::get($attributes, 'button_url') }}" />
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

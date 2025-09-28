@@ -1,3 +1,4 @@
+﻿@php use Illuminate\Support\Arr; @endphp
 @php
     $filters = collect(range(1, 4))->map(function ($index) use ($shortcode) {
         $label = $shortcode->{"filter_label_{$index}"} ?? null;
@@ -9,7 +10,7 @@
 
         return (object) [
             'label' => $label,
-            'value' => $value ?: \Illuminate\Support\Str::slug($label),
+            'value' => $value ?: \Illuminate.Support\Str::slug($label),
         ];
     })->filter();
 
@@ -108,6 +109,19 @@
         </div>
     </section>
 @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

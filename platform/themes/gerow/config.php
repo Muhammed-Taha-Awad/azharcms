@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Botble\Base\Facades\BaseHelper;
 use Botble\Shortcode\View\View;
@@ -13,6 +13,7 @@ return [
 
             if (BaseHelper::isRtlEnabled()) {
                 $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/bootstrap.rtl.min.css');
+                $theme->asset()->usePath()->add('azhar-rtl-css', 'css/azhar-rtl.css', version: $version);
             } else {
                 $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/bootstrap.min.css');
             }
@@ -60,4 +61,9 @@ return [
         },
     ],
 ];
+
+
+
+
+
 

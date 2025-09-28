@@ -1,3 +1,4 @@
+﻿@php use Illuminate\Support\Arr; @endphp
 @php
     $links = collect(range(1, 3))->map(function ($index) use ($shortcode) {
         $label = $shortcode->{"header_link_label_{$index}"} ?? null;
@@ -61,3 +62,16 @@
         </div>
     </section>
 @endif
+
+
+
+
+
+
+
+
+
+
+
+
+

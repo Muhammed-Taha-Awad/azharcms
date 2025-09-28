@@ -1,6 +1,7 @@
-<?php
+﻿<?php
 
 use Botble\Base\Forms\FieldOptions\MediaImageFieldOption;
+use Botble\Base\Forms\FieldOptions\ButtonFieldOption;
 use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
 use Botble\Base\Forms\FieldOptions\TextareaFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
@@ -13,6 +14,7 @@ use Botble\Newsletter\Forms\Fronts\NewsletterForm;
 use Botble\Shortcode\Compilers\Shortcode as ShortcodeCompiler;
 use Botble\Shortcode\Facades\Shortcode;
 use Botble\Shortcode\Forms\ShortcodeForm;
+use Botble\Contact\Forms\Fronts\ContactForm;
 use Botble\Theme\Facades\Theme;
 use Botble\Theme\Supports\Youtube;
 use Carbon\Carbon;
@@ -83,6 +85,118 @@ app()->booted(function () {
     Shortcode::setAdminConfig('azhar-geography', function (array $attributes): ?string {
         return Theme::partial('shortcodes.azhar.geography-admin', compact('attributes'));
     });
+
+    Shortcode::register('azhar-page-hero', __('Azhar Page Hero'), __('Page hero section for Azhar inner pages'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.page-hero', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-page-hero', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.page-hero-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-explore-more', __('Azhar Explore More'), __('Explore more links grid for Azhar'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.explore-more', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-explore-more', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.explore-more-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-about-tabs', __('Azhar About Tabs'), __('Tabbed content section for Azhar pages'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.about-tabs', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-about-tabs', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.about-tabs-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-contact-form', __('Azhar Contact Form'), __('Contact form section for Azhar'), function (ShortcodeCompiler $shortcode): ?string {
+        $form = null;
+
+        if (is_plugin_active('contact') && class_exists(ContactForm::class)) {
+            if (! defined('AZHAR_CONTACT_FORM_ASSETS')) {
+                define('AZHAR_CONTACT_FORM_ASSETS', true);
+
+                Theme::asset()
+                    ->usePath(false)
+                    ->add('contact-css', asset('vendor/core/plugins/contact/css/contact-public.css'), [], [], '1.0.0');
+
+                Theme::asset()
+                    ->container('footer')
+                    ->usePath(false)
+                    ->add('contact-public-js', asset('vendor/core/plugins/contact/js/contact-public.js'), ['jquery'], [], '1.0.0');
+            }
+
+            $formData = [
+                'display_fields' => $shortcode->display_fields ?: 'email,phone,address',
+                'mandatory_fields' => $shortcode->mandatory_fields ?: 'email',
+            ];
+
+            $form = ContactForm::createFromArray($formData);
+
+            if ($buttonLabel = $shortcode->button_label) {
+                $form->modify('submit', 'submit', ButtonFieldOption::make()
+                    ->cssClass('contact-button')
+                    ->label($buttonLabel)
+                    ->toArray());
+            }
+        }
+
+        return Theme::partial('shortcodes.azhar.contact-form', compact('shortcode', 'form'));
+    });
+
+    Shortcode::setAdminConfig('azhar-contact-form', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.contact-form-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-contact-locations', __('Azhar Contact Locations'), __('Contact locations grid for Azhar'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.contact-locations', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-contact-locations', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.contact-locations-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-sustainability-report', __('Azhar Sustainability Report'), __('Report highlight block for Azhar sustainability page'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-report', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-sustainability-report', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-report-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-esg-strategy', __('Azhar ESG Strategy'), __('Two column ESG strategy section for Azhar'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.esg-strategy', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-esg-strategy', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.esg-strategy-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-sustainability-approach', __('Azhar Sustainability Approach'), __('Quote and image block for Azhar sustainability page'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-approach', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-sustainability-approach', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-approach-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-sustainability-policies', __('Azhar Sustainability Policies'), __('Policies grid for Azhar sustainability page'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-policies', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-sustainability-policies', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-policies-admin', compact('attributes'));
+    });
+
+    Shortcode::register('azhar-sustainability-initiatives', __('Azhar Sustainability Initiatives'), __('Initiatives slider for Azhar sustainability page'), function (ShortcodeCompiler $shortcode): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-initiatives', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('azhar-sustainability-initiatives', function (array $attributes): ?string {
+        return Theme::partial('shortcodes.azhar.sustainability-initiatives-admin', compact('attributes'));
+    });
+
     Shortcode::register('hero-banner', __('Hero banner'), __('Hero banner'), function (ShortcodeCompiler $shortcode): ?string {
         $shortcode->video_url = $shortcode->youtube_url;
 
@@ -412,6 +526,14 @@ app()->booted(function () {
             );
     });
 });
+
+
+
+
+
+
+
+
 
 
 

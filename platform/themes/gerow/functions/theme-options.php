@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Botble\Theme\Events\RenderingThemeOptionSettings;
 
@@ -482,13 +482,14 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Header secondary links'),
                     'attributes' => [
                         'name' => 'azhar_header_secondary_links',
-                        'value' => theme_option('azhar_header_secondary_links'),
+                        'value' => theme_option('azhar_header_secondary_links', []),
                         'fields' => [
                             [
                                 'type' => 'text',
                                 'label' => __('Label'),
                                 'attributes' => [
                                     'name' => 'label',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -499,6 +500,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                                 'label' => __('URL'),
                                 'attributes' => [
                                     'name' => 'url',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -577,6 +579,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                                 'label' => __('Label'),
                                 'attributes' => [
                                     'name' => 'label',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -587,6 +590,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                                 'label' => __('URL'),
                                 'attributes' => [
                                     'name' => 'url',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -608,6 +612,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                                 'label' => __('Label'),
                                 'attributes' => [
                                     'name' => 'label',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -618,6 +623,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                                 'label' => __('URL'),
                                 'attributes' => [
                                     'name' => 'url',
+                                    'value' => null,
                                     'options' => [
                                         'class' => 'form-control',
                                     ],
@@ -712,6 +718,10 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
             ],
         ]);
 });
+
+
+
+
 
 
 

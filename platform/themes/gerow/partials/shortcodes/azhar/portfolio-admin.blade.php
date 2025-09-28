@@ -1,3 +1,4 @@
+﻿@php use Illuminate\Support\Arr; @endphp
 <div class="row g-3">
     <div class="col-md-4">
         <label class="form-label">{{ __('Section title') }}</label>
@@ -72,3 +73,16 @@
         @endif
     </fieldset>
 @endfor
+
+
+
+
+
+
+
+
+
+
+
+
+

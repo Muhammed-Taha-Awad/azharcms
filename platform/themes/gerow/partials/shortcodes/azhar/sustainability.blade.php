@@ -1,3 +1,4 @@
+﻿@php use Illuminate\Support\Arr; @endphp
 <section class="sustainability-section" @if ($shortcode->background_image) style="background-image: url('{{ RvMedia::getImageUrl($shortcode->background_image) }}');" @endif>
     <div class="sustainability-content-container">
         @if ($shortcode->title)
@@ -19,3 +20,16 @@
         @endif
     </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+

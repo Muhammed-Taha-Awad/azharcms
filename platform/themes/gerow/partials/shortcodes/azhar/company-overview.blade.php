@@ -1,4 +1,4 @@
-﻿@php
+@php
     $description = collect([
         $shortcode->description_1 ?? null,
         $shortcode->description_2 ?? null,

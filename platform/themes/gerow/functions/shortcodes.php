@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Botble\Base\Forms\FieldOptions\MediaImageFieldOption;
 use Botble\Base\Forms\FieldOptions\ButtonFieldOption;

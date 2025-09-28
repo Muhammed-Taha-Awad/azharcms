@@ -1,4 +1,4 @@
-﻿@php
+@php
     $items = collect(range(1, 3))->map(function ($index) use ($shortcode) {
         $title = $shortcode->{"item_title_{$index}"} ?? null;
         $excerpt = $shortcode->{"item_excerpt_{$index}"} ?? null;

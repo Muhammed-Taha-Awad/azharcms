@@ -1,6 +1,12 @@
-$(() => {
+﻿$(() => {
     'use strict'
 
+    const adminClasses = ['page-sidebar-closed-hide-logo', 'page-content-white', 'page-container-bg-solid'];
+    const $body = $('body');
+
+    if (!$body.length || adminClasses.some((cls) => $body.hasClass(cls))) {
+        return;
+    }
     window.Theme = window.Theme || {}
 
     window.Theme.isRtl = () => {
@@ -119,3 +125,7 @@ $(() => {
         })
     })
 })
+
+
+
+

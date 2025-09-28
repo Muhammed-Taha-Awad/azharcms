@@ -1,4 +1,4 @@
-﻿@php
+@php
     $label = $shortcode->label ?? null;
     $title = $shortcode->title ?? null;
     $description = $shortcode->description ?? null;

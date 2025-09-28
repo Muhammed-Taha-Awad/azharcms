@@ -1,9 +1,21 @@
-$(() => {
+﻿$(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
     gsap.config({
         nullTargetWarn: false,
         trialWarn: false
     });
+
+    const body = document.body;
+
+    if (!body) {
+        return;
+    }
+
+    const adminClasses = ['page-sidebar-closed-hide-logo', 'page-content-white', 'page-container-bg-solid'];
+
+    if (adminClasses.some((cls) => body.classList.contains(cls))) {
+        return;
+    }
 
     function tg_title_animation() {
 
@@ -81,3 +93,4 @@ $(() => {
     }
     ScrollTrigger.addEventListener("refresh", tg_title_animation);
 })
+

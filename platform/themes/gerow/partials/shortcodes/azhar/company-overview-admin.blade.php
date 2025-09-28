@@ -1,4 +1,4 @@
-﻿<div class="row g-3">
+<div class="row g-3">
     <div class="col-md-8">
         <label class="form-label">{{ __('Section title (allow line breaks with <br>)') }}</label>
         <textarea class="form-control" name="title" rows="2">{{ data_get($attributes, 'title') }}</textarea>

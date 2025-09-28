@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Botble\Theme\Events\RenderingThemeOptionSettings;
 

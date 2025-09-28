@@ -1,4 +1,4 @@
-﻿@php
+@php
     $links = collect(range(1, 3))->map(function ($index) use ($shortcode) {
         $label = $shortcode->{"header_link_label_{$index}"} ?? null;
         $url = $shortcode->{"header_link_url_{$index}"} ?? null;

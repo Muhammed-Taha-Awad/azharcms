@@ -1,4 +1,4 @@
-﻿<div class="row g-3">
+<div class="row g-3">
     <div class="col-md-6">
         <label class="form-label">{{ __('Section label') }}</label>
         <input class="form-control" name="label" value="{{ data_get($attributes, 'label') }}" placeholder="{{ __('Our approach') }}" />

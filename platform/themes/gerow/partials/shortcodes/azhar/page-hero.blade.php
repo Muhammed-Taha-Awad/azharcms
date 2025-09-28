@@ -1,4 +1,4 @@
-﻿@php
+@php
     $background = $shortcode->background_image ? RvMedia::getImageUrl($shortcode->background_image) : null;
     $overlay = $shortcode->overlay ? trim($shortcode->overlay) : null;
 

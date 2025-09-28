@@ -9,11 +9,10 @@ return [
 
     'events' => [
         'beforeRenderTheme' => function (Theme $theme) {
-            $version = get_cms_version() . '.1';
+            $version = get_cms_version() . '.3';
 
             if (BaseHelper::isRtlEnabled()) {
                 $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/bootstrap.rtl.min.css');
-                $theme->asset()->usePath()->add('azhar-rtl-css', 'css/azhar-rtl.css', version: $version);
             } else {
                 $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/bootstrap.min.css');
             }
@@ -28,9 +27,11 @@ return [
             $theme->asset()->usePath()->add('style-css', 'css/style.css', version: $version);
             $theme->asset()->usePath()->add('responsive-css', 'css/responsive.css');
 
-            $theme->asset()->usePath()->add('azhar-css', 'css/azhar.css', version: $version);
             if (BaseHelper::isRtlEnabled()) {
                 $theme->asset()->usePath()->add('style-rtl-css', 'css/rtl.css');
+                $theme->asset()->usePath()->add('azhar-rtl-css', 'css/azhar-rtl.css', version: $version);
+            } else {
+                $theme->asset()->usePath()->add('azhar-css', 'css/azhar.css', version: $version);
             }
 
             $theme->asset()->container('footer')->usePath()->add('jquery', 'plugins/jquery-3.7.1.min.js');
@@ -61,9 +62,4 @@ return [
         },
     ],
 ];
-
-
-
-
-
 

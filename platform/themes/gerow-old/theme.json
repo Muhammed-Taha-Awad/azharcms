@@ -1,0 +1,10 @@
+{
+    "id": "botble/gerow",
+    "name": "Azhar",
+    "namespace": "Theme\\Gerow\\",
+    "author": "Azhar",
+    "url": "https://azhar.com",
+    "version": "1.0.0",
+    "description": "Azhar Company Business Website",
+    "required_plugins": []
+}

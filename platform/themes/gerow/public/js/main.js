@@ -1,1 +1,890 @@
-(()=>{var e,t={371:()=>{$((function(){"use strict";var e=function(){$(document).find(".popup-video").length&&$(document).find(".popup-video").magnificPopup({type:"iframe"})};if($(document).ready((function(){$("#preloader").delay(0).fadeOut(),function(){var e=$(".slider-active");function t(e){var t="webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend";e.each((function(){var e=$(this),o=e.data("delay"),i="animated "+e.data("animation");e.css({"animation-delay":o,"-webkit-animation-delay":o}),e.addClass(i).one(t,(function(){e.removeClass(i)}))}))}e.on("init",(function(e,o){t($(".single-slider:first-child").find("[data-animation]"))})),e.on("beforeChange",(function(e,o,i,n){t($('.single-slider[data-slick-index="'+n+'"]').find("[data-animation]"))})),e.slick({autoplay:e.data("autoplay"),autoplaySpeed:e.data("autoplay-speed")||1e4,dots:!1,fade:!0,arrows:!1,responsive:[{breakpoint:767,settings:{dots:!1,arrows:!1}}]})}(),new WOW({boxClass:"wow",animateClass:"animated",offset:0,mobile:!1,live:!0}).init(),"undefined"!=typeof AOS&&AOS.init({duration:1e3,mirror:!0,once:!0,disable:"mobile"}),e(),"undefined"!=typeof tg_title_animation&&tg_title_animation()})),$(".menu-area li.menu-item-has-children ul").length&&$(".menu-area .navigation li.menu-item-has-children").append('<div class="dropdown-btn"><span class="fas fa-angle-down"></span></div>'),$(".mobile-menu").length){var t=$(".menu-area .main-menu").html();$(".mobile-menu .menu-box .menu-outer").append(t),$(".mobile-menu li.menu-item-has-children .dropdown-btn").on("click",(function(){$(this).toggleClass("open"),$(this).prev("ul").slideToggle(300)})),$(".mobile-nav-toggler").on("click",(function(){$("body").addClass("mobile-menu-visible")})),$(".menu-backdrop, .mobile-menu .close-btn").on("click",(function(){$("body").removeClass("mobile-menu-visible")}))}$(window).on("scroll",(function(){$(window).scrollTop()<245?($("#sticky-header").removeClass("sticky-menu"),$(".scroll-to-target").removeClass("open"),$("#header-fixed-height").removeClass("active-height")):($("#sticky-header").addClass("sticky-menu"),$(".scroll-to-target").addClass("open"),$("#header-fixed-height").addClass("active-height"))})),$(".scroll-to-target").length&&$(".scroll-to-target").on("click",(function(){var e=$(this).attr("data-target");$("html, body").animate({scrollTop:$(e).offset().top},1e3)})),$(".header-search > a").on("click",(function(){return $(".search-popup-wrap").slideToggle(),!1})),$(".search-close").on("click",(function(){$(".search-popup-wrap").slideUp(500)})),$(".menu-tigger").on("click",(function(){return $(".extra-info,.offcanvas-overly").addClass("active"),!1})),$(".menu-close,.offcanvas-overly").on("click",(function(){$(".extra-info,.offcanvas-overly").removeClass("active")}));var o=function(){$("[data-background]").each((function(){$(this).css("background-image","url("+$(this).attr("data-background")+")")}))};o();var i=function(e,t){var o=$(document).find(e);o.length&&!o.hasClass("slick-initialized")&&o.slick(t)},n=function(){i(".brand-active",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,arrows:!1,slidesToShow:5,rtl:Theme.isRtl(),slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:5,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:4,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:3,slidesToScroll:1,arrows:!1}},{breakpoint:575,settings:{slidesToShow:2,slidesToScroll:1,arrows:!1}}]}),i(".services-active",{dots:!0,infinite:!0,speed:1e3,autoplay:!0,arrows:!1,slidesToShow:3,slidesToScroll:1,rtl:Theme.isRtl(),responsive:[{breakpoint:1200,settings:{slidesToShow:3,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:2,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1,arrows:!1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1,arrows:!1}}]}),i(".testimonial-active",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,fade:!0,arrows:!0,rtl:Theme.isRtl(),prevArrow:'<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',nextArrow:'<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',appendArrows:".testimonial-nav",slidesToShow:1,slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:1,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1}}]}),i(".testimonial-active-two",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,arrows:!0,rtl:Theme.isRtl(),prevArrow:'<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',nextArrow:'<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',appendArrows:".testimonial-nav-two",slidesToShow:2,slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:2,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1}}]}),i(".testimonial-active-three",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,fade:!0,arrows:!0,rtl:Theme.isRtl(),prevArrow:'<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',nextArrow:'<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',appendArrows:".testimonial-nav-three",slidesToShow:1,slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:1,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1}}]}),i(".testimonial-active-four",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,arrows:!0,rtl:Theme.isRtl(),prevArrow:'<button type="button" class="slick-prev"><i class="flaticon-right-arrow"></i></button>',nextArrow:'<button type="button" class="slick-next"><i class="flaticon-right-arrow"></i></button>',appendArrows:".testimonial-nav-four",slidesToShow:1,slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:1,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1}}]}),i(".testimonial-active-five",{dots:!1,infinite:!0,speed:1e3,autoplay:!0,arrows:!0,rtl:Theme.isRtl(),prevArrow:'<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',nextArrow:'<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',appendArrows:".testimonial-nav-five",vertical:!Theme.isRtl(),slidesToShow:1,slidesToScroll:1,responsive:[{breakpoint:1200,settings:{slidesToShow:1,slidesToScroll:1,infinite:!0}},{breakpoint:992,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:767,settings:{slidesToShow:1,slidesToScroll:1}},{breakpoint:575,settings:{slidesToShow:1,slidesToScroll:1}}]})};if(n(),document.addEventListener("shortcode.loaded",(function(){n(),o(),e()})),jQuery(".project-active").length>0&&new Swiper(".project-active",{slidesPerView:1,spaceBetween:30,loop:!0,autoplay:!1,breakpoints:{500:{slidesPerView:2,spaceBetween:20},768:{slidesPerView:2.5,spaceBetween:20},992:{slidesPerView:3.5,spaceBetween:20},1200:{slidesPerView:3.5,spaceBetween:20},1500:{slidesPerView:4,spaceBetween:24}},pagination:{el:".project-swiper-pagination",clickable:!0},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},scrollbar:{el:".swiper-scrollbar"}}),$(".pricing-tab-switcher, .tab-btn").on("click",(function(){$(".pricing-tab-switcher, .tab-btn").toggleClass("active"),$(".pricing-tab").toggleClass("seleceted"),$(".pricing-price, .pricing-price-two").toggleClass("change-subs-duration")})),$(".services-item-two").hover((function(){return $(this).find(".services-content-two p").slideToggle(300),!1})),$(".social-toggle-icon").on("click",(function(){return $(this).closest(".team-social-three").toggleClass("open"),$(this).parent().find("ul").slideToggle(400),$(this).find("i").toggleClass("fa-times"),!1})),$(".banner-area-three, .banner-area-five").length){for(var a=["#FF4D4D","#1AD6FF","#FFCD4D","#BB6BD9","#1A66FF"],s=[],r=0;r<30;r++){var l=document.createElement("div");l.classList.add("ball"),l.style.background=a[Math.floor(Math.random()*a.length)],l.style.left="".concat(Math.floor(100*Math.random()),"%"),l.style.top="".concat(Math.floor(100*Math.random()),"%"),l.style.transform="scale(".concat(Math.random(),")"),l.style.width="".concat(10*Math.random(),"px"),l.style.height=l.style.width,s.push(l),$(".banner-area-three, .banner-area-five").append(l)}s.forEach((function(e,t,o){var i={x:Math.random()*(t%2==0?-10:11),y:12*Math.random()};e.animate([{transform:"translate(0, 0)"},{transform:"translate(".concat(i.x,"rem, ").concat(i.y,"rem)")}],{duration:2e3*(Math.random()+1),direction:"alternate",fill:"both",iterations:1/0,easing:"ease-in-out"})}))}if($(".about-area-six").length){for(var c=["#FF4D4D","#1AD6FF","#FFCD4D","#BB6BD9","#1A66FF"],d=[],p=0;p<30;p++){var u=document.createElement("div");u.classList.add("ball"),u.style.background=c[Math.floor(Math.random()*c.length)],u.style.left="".concat(Math.floor(100*Math.random()),"%"),u.style.top="".concat(Math.floor(100*Math.random()),"%"),u.style.transform="scale(".concat(Math.random(),")"),u.style.width="".concat(10*Math.random(),"px"),u.style.height=u.style.width,d.push(u),$(".about-area-six").append(u)}d.forEach((function(e,t,o){var i={x:Math.random()*(t%2==0?-10:11),y:12*Math.random()};e.animate([{transform:"translate(0, 0)"},{transform:"translate(".concat(i.x,"rem, ").concat(i.y,"rem)")}],{duration:2e3*(Math.random()+1),direction:"alternate",fill:"both",iterations:1/0,easing:"ease-in-out"})}))}if($(".testimonial-area-five").length){for(var h=["#FF4D4D","#1AD6FF","#FFCD4D","#BB6BD9","#1A66FF"],v=[],m=0;m<30;m++){var f=document.createElement("div");f.classList.add("ball"),f.style.background=h[Math.floor(Math.random()*h.length)],f.style.left="".concat(Math.floor(100*Math.random()),"%"),f.style.top="".concat(Math.floor(100*Math.random()),"%"),f.style.transform="scale(".concat(Math.random(),")"),f.style.width="".concat(10*Math.random(),"px"),f.style.height=f.style.width,v.push(f),$(".testimonial-area-five").append(f)}v.forEach((function(e,t,o){var i={x:Math.random()*(t%2==0?-10:11),y:12*Math.random()};e.animate([{transform:"translate(0, 0)"},{transform:"translate(".concat(i.x,"rem, ").concat(i.y,"rem)")}],{duration:2e3*(Math.random()+1),direction:"alternate",fill:"both",iterations:1/0,easing:"ease-in-out"})}))}if(0!==$(".circle-item").length&&$(".circle-item").on("inview",(function(e,t){var o=$(this).data("color");t&&$(".chart").easyPieChart({scaleLength:0,lineWidth:10,trackWidth:10,size:160,rotate:360,animate:3e3,trackColor:"#2A3E66",barColor:o})})),window.IntersectionObserver){var w=new IntersectionObserver((function(e,t){e.forEach((function(e){e.isIntersecting&&(e.target.classList.add("active-animation"),t.unobserve(e.target))}))}),{rootMargin:"0px 0px -100px 0px"});document.querySelectorAll(".has-animation").forEach((function(e){w.observe(e)}))}else document.querySelectorAll(".has-animation").forEach((function(e){e.classList.remove("has-animation")}));"undefined"!=typeof jarallax&&$(".jarallax").jarallax({speed:.2}),0!==$(".odometer").length&&$(".odometer").appear((function(e){$(".odometer").each((function(){var e=$(this).attr("data-count");$(this).html(e)}))})),$(document).keyup((function(e){"Escape"===e.key&&($(".search-popup-wrap").slideUp(500),$(".extra-info,.offcanvas-overly").removeClass("active"))}));var g=$(".ae-anno-announcement-wrapper"),b=$('[data-bb-toggle="announcement"]');if(g.length&&b.length){var T=function(){var e=g.outerHeight()||0;$(b.data("bb-target")).css("--height-announcement",e+"px")};setTimeout((function(){T()}),500),g.on("click",".ae-anno-announcement__arrow, .ae-anno-announcement__dismiss-button",(function(){T()})),$(window).resize((function(){T()}))}$("[data-countdown]").each((function(){var e=$(this),t=e.data("countdown");$(this).countdown(t,(function(t){e.html(t.strftime('\n                <div class="countdown-item"><span class="countdown-amount">%D</span> <span class="countdown-period">'.concat(e.data("days-text"),'</span></div>\n                <div class="countdown-item"><span class="countdown-amount">%H</span> <span class="countdown-period">').concat(e.data("hours-text"),'</span></div>\n                <div class="countdown-item"><span class="countdown-amount">%M</span> <span class="countdown-period">').concat(e.data("minutes-text"),'</span></div>\n                <div class="countdown-item"><span class="countdown-amount">%S</span> <span class="countdown-period">').concat(e.data("seconds-text"),"</span></div>\n            ")))}))}))}))},7135:()=>{},4075:()=>{},1767:()=>{},5047:()=>{},477:()=>{},639:()=>{},9867:()=>{},5327:()=>{},7467:()=>{},6519:()=>{},9431:()=>{},6380:()=>{},8365:()=>{},6616:()=>{},4657:()=>{},1888:()=>{},310:()=>{},7008:()=>{},856:()=>{},8544:()=>{},1957:()=>{},4696:()=>{},4598:()=>{},5600:()=>{},5186:()=>{},2688:()=>{},5374:()=>{},7368:()=>{},8023:()=>{},3467:()=>{},278:()=>{},6876:()=>{},7628:()=>{},2702:()=>{},2365:()=>{},8195:()=>{},3113:()=>{}},o={};function i(e){var n=o[e];if(void 0!==n)return n.exports;var a=o[e]={exports:{}};return t[e](a,a.exports,i),a.exports}i.m=t,e=[],i.O=(t,o,n,a)=>{if(!o){var s=1/0;for(d=0;d<e.length;d++){for(var[o,n,a]=e[d],r=!0,l=0;l<o.length;l++)(!1&a||s>=a)&&Object.keys(i.O).every((e=>i.O[e](o[l])))?o.splice(l--,1):(r=!1,a<s&&(s=a));if(r){e.splice(d--,1);var c=n();void 0!==c&&(t=c)}}return t}a=a||0;for(var d=e.length;d>0&&e[d-1][2]>a;d--)e[d]=e[d-1];e[d]=[o,n,a]},i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={5931:0,7026:0,4400:0,6940:0,951:0,2184:0,8987:0,7984:0,1159:0,5443:0,578:0,5376:0,1879:0,449:0,9979:0,4645:0,1391:0,3884:0,7215:0,2375:0,25:0,7807:0,3383:0,3182:0,7405:0,9450:0,7741:0,9168:0,7014:0,8066:0,508:0,4:0,5536:0,8286:0,6198:0,2852:0,7800:0,9558:0};i.O.j=t=>0===e[t];var t=(t,o)=>{var n,a,[s,r,l]=o,c=0;if(s.some((t=>0!==e[t]))){for(n in r)i.o(r,n)&&(i.m[n]=r[n]);if(l)var d=l(i)}for(t&&t(o);c<s.length;c++)a=s[c],i.o(e,a)&&e[a]&&e[a][0](),e[a]=0;return i.O(d)},o=self.webpackChunk=self.webpackChunk||[];o.forEach(t.bind(null,0)),o.push=t.bind(null,o.push.bind(o))})(),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(371))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(2702))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(2365))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(8195))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(3113))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(7135))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(4075))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(1767))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(5047))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(477))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(639))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(9867))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(5327))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(7467))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(6519))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(9431))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(6380))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(8365))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(6616))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(4657))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(1888))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(310))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(7008))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(856))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(8544))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(1957))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(4696))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(4598))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(5600))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(5186))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(2688))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(5374))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(7368))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(8023))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(3467))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(278))),i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(6876)));var n=i.O(void 0,[7026,4400,6940,951,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,9168,7014,8066,508,4,5536,8286,6198,2852,7800,9558],(()=>i(7628)));n=i.O(n)})();
+﻿$(() => {
+    'use strict'
+
+    const adminClasses = ['page-sidebar-closed-hide-logo', 'page-content-white', 'page-container-bg-solid'];
+    const $body = $('body');
+
+    if (!$body.length || adminClasses.some((cls) => $body.hasClass(cls))) {
+        return;
+    }
+    /*=============================================
+        =    		 Preloader			      =
+    =============================================*/
+    function preloader() {
+        $('#preloader').delay(0).fadeOut()
+    }
+
+    let initPopupVideo = function () {
+        /*=============================================
+            =    		Magnific Popup		      =
+        =============================================*/
+        if ($(document).find('.popup-video').length) {
+            /* magnificPopup video view */
+            $(document).find('.popup-video').magnificPopup({
+                type: 'iframe',
+            })
+        }
+    }
+
+    $(document).ready(function () {
+        preloader()
+        mainSlider()
+        wowAnimation()
+        aosAnimation()
+        initPopupVideo()
+        if (typeof tg_title_animation !== 'undefined') {
+            tg_title_animation()
+        }
+    })
+
+    /*=============================================
+        =    		Mobile Menu			      =
+    =============================================*/
+    //SubMenu Dropdown Toggle
+    if ($('.menu-area li.menu-item-has-children ul').length) {
+        $('.menu-area .navigation li.menu-item-has-children').append(`<div class="dropdown-btn"><span class="fas fa-angle-down"></span></div>`)
+    }
+
+    //Mobile Nav Hide Show
+    if ($('.mobile-menu').length) {
+        var mobileMenuContent = $('.menu-area .main-menu').html()
+        $('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent)
+
+        //Dropdown Button
+        $('.mobile-menu li.menu-item-has-children .dropdown-btn').on('click', function () {
+            $(this).toggleClass('open')
+            $(this).prev('ul').slideToggle(300)
+        })
+        //Menu Toggle Btn
+        $('.mobile-nav-toggler').on('click', function () {
+            $('body').addClass('mobile-menu-visible')
+        })
+
+        //Menu Toggle Btn
+        $('.menu-backdrop, .mobile-menu .close-btn').on('click', function () {
+            $('body').removeClass('mobile-menu-visible')
+        })
+    }
+
+    /*=============================================
+        =     Menu sticky & Scroll to top      =
+    =============================================*/
+    $(window).on('scroll', function () {
+        var scroll = $(window).scrollTop()
+        if (scroll < 245) {
+            $('#sticky-header').removeClass('sticky-menu')
+            $('.scroll-to-target').removeClass('open')
+            $('#header-fixed-height').removeClass('active-height')
+        } else {
+            $('#sticky-header').addClass('sticky-menu')
+            $('.scroll-to-target').addClass('open')
+            $('#header-fixed-height').addClass('active-height')
+        }
+    })
+
+    /*=============================================
+        =    		 Scroll Up  	         =
+    =============================================*/
+    if ($('.scroll-to-target').length) {
+        $('.scroll-to-target').on('click', function () {
+            var target = $(this).attr('data-target')
+            // animate
+            $('html, body').animate(
+                {
+                    scrollTop: $(target).offset().top,
+                },
+                1000
+            )
+        })
+    }
+
+    /*=============================================
+        =            Header Search            =
+    =============================================*/
+    $('.header-search > a').on('click', function () {
+        $('.search-popup-wrap').slideToggle()
+        return false
+    })
+
+    $('.search-close').on('click', function () {
+        $('.search-popup-wrap').slideUp(500)
+    })
+
+    /*=============================================
+    =     Offcanvas Menu      =
+    =============================================*/
+    $('.menu-tigger').on('click', function () {
+        $('.extra-info,.offcanvas-overly').addClass('active')
+        return false
+    })
+    $('.menu-close,.offcanvas-overly').on('click', function () {
+        $('.extra-info,.offcanvas-overly').removeClass('active')
+    })
+
+    /*=============================================
+        =          Data Background               =
+    =============================================*/
+    let initBackground = function () {
+        $('[data-background]').each(function () {
+            $(this).css('background-image', 'url(' + $(this).attr('data-background') + ')')
+        })
+    }
+
+    initBackground()
+
+    /*=============================================
+        =    		 Main Slider		      =
+    =============================================*/
+    function mainSlider() {
+        var BasicSlider = $('.slider-active')
+        BasicSlider.on('init', function (e, slick) {
+            var $firstAnimatingElements = $('.single-slider:first-child').find('[data-animation]')
+            doAnimations($firstAnimatingElements)
+        })
+        BasicSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
+            var $animatingElements = $('.single-slider[data-slick-index="' + nextSlide + '"]').find('[data-animation]')
+            doAnimations($animatingElements)
+        })
+        BasicSlider.slick({
+            autoplay: BasicSlider.data('autoplay'),
+            autoplaySpeed: BasicSlider.data('autoplay-speed') || 10000,
+            dots: false,
+            fade: true,
+            arrows: false,
+            responsive: [{ breakpoint: 767, settings: { dots: false, arrows: false } }],
+        })
+
+        function doAnimations(elements) {
+            var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
+            elements.each(function () {
+                var $this = $(this)
+                var $animationDelay = $this.data('delay')
+                var $animationType = 'animated ' + $this.data('animation')
+                $this.css({
+                    'animation-delay': $animationDelay,
+                    '-webkit-animation-delay': $animationDelay,
+                })
+                $this.addClass($animationType).one(animationEndEvents, function () {
+                    $this.removeClass($animationType)
+                })
+            })
+        }
+    }
+
+    let initSlick = function (element, $options) {
+        const $element = $(document).find(element)
+
+        if (! $element.length || $element.hasClass('slick-initialized')) {
+            return
+        }
+
+        $element.slick($options)
+    }
+
+    /*=============================================
+        =    		Brand Active		      =
+    =============================================*/
+    let initTestimonialSlider = function () {
+        /*=============================================
+        =    		Brand Active		      =
+    =============================================*/
+        initSlick('.brand-active', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: false,
+            slidesToShow: 5,
+            rtl: Theme.isRtl(),
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        arrows: false,
+                    },
+                },
+            ],
+        })
+
+        /*=============================================
+            =    		services Active		      =
+        =============================================*/
+        initSlick('.services-active', {
+            dots: true,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            rtl: Theme.isRtl(),
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                    },
+                },
+            ],
+        })
+
+        initSlick('.testimonial-active', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            fade: true,
+            arrows: true,
+            rtl: Theme.isRtl(),
+            prevArrow: '<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',
+            nextArrow: '<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',
+            appendArrows: '.testimonial-nav',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        })
+
+        /*=============================================
+            =    		testimonial Active		      =
+        =============================================*/
+        initSlick('.testimonial-active-two', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: true,
+            rtl: Theme.isRtl(),
+            prevArrow: '<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',
+            nextArrow: '<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',
+            appendArrows: '.testimonial-nav-two',
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        })
+
+        /*=============================================
+            =    		testimonial Active		      =
+        =============================================*/
+        initSlick('.testimonial-active-three', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            fade: true,
+            arrows: true,
+            rtl: Theme.isRtl(),
+            prevArrow: '<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',
+            nextArrow: '<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',
+            appendArrows: '.testimonial-nav-three',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        })
+
+        /*=============================================
+            =    		testimonial Active		      =
+        =============================================*/
+        initSlick('.testimonial-active-four', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: true,
+            rtl: Theme.isRtl(),
+            prevArrow: '<button type="button" class="slick-prev"><i class="flaticon-right-arrow"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="flaticon-right-arrow"></i></button>',
+            appendArrows: '.testimonial-nav-four',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        })
+
+        /*=============================================
+            =    		testimonial Active		      =
+        =============================================*/
+        initSlick('.testimonial-active-five', {
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            arrows: true,
+            rtl: Theme.isRtl(),
+            prevArrow: '<button type="button" class="slick-prev" title="Previous"><i class="flaticon-right-arrow"></i></button>',
+            nextArrow: '<button type="button" class="slick-next" title="Next"><i class="flaticon-right-arrow"></i></button>',
+            appendArrows: '.testimonial-nav-five',
+            vertical: !Theme.isRtl(),
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        })
+    }
+
+    initTestimonialSlider()
+
+    document.addEventListener('shortcode.loaded', () => {
+        initTestimonialSlider()
+        initBackground()
+        initPopupVideo()
+    })
+
+    /*=============================================
+        =         Project Active           =
+    =============================================*/
+    if (jQuery('.project-active').length > 0) {
+         new Swiper('.project-active', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: false,
+            breakpoints: {
+                500: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 20,
+                },
+                1200: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 20,
+                },
+                1500: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                },
+            },
+            // If we need pagination
+            pagination: {
+                el: '.project-swiper-pagination',
+                clickable: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
+    }
+
+    /*=============================================
+        =    		pricing Active  	       =
+    =============================================*/
+    $('.pricing-tab-switcher, .tab-btn').on('click', function () {
+        $('.pricing-tab-switcher, .tab-btn').toggleClass('active'),
+            $('.pricing-tab').toggleClass('seleceted'),
+            $('.pricing-price, .pricing-price-two').toggleClass('change-subs-duration')
+    })
+
+    /*=============================================
+        =          services Active               =
+    =============================================*/
+    $('.services-item-two').hover(function () {
+        $(this).find('.services-content-two p').slideToggle(300)
+        return false
+    })
+
+    /*=============================================
+        =        Team Social Active 	       =
+    =============================================*/
+    $('.social-toggle-icon').on('click', function () {
+        const currenTarget = $(this)
+        currenTarget.closest('.team-social-three').toggleClass('open')
+        $(this).parent().find('ul').slideToggle(400)
+        $(this).find('i').toggleClass('fa-times')
+        return false
+    })
+
+    /*=============================================
+            =           Partical JS        =
+    =============================================*/
+    if ($('.banner-area-three, .banner-area-five').length) {
+        const colors = ['#FF4D4D', '#1AD6FF', '#FFCD4D', '#BB6BD9', '#1A66FF']
+
+        const numBalls = 30
+        const balls = []
+
+        for (let i = 0; i < numBalls; i++) {
+            let ball = document.createElement('div')
+            ball.classList.add('ball')
+            ball.style.background = colors[Math.floor(Math.random() * colors.length)]
+            ball.style.left = `${Math.floor(Math.random() * 100)}%`
+            ball.style.top = `${Math.floor(Math.random() * 100)}%`
+            ball.style.transform = `scale(${Math.random()})`
+            ball.style.width = `${Math.random() * 10}px`
+            ball.style.height = ball.style.width
+            balls.push(ball)
+
+            $('.banner-area-three, .banner-area-five').append(ball)
+        }
+
+        balls.forEach((el, i, ra) => {
+            let to = {
+                x: Math.random() * (i % 2 === 0 ? -10 : 11),
+                y: Math.random() * 12,
+            }
+
+            let anim = el.animate(
+                [{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }],
+                {
+                    duration: (Math.random() + 1) * 2000,
+                    direction: 'alternate',
+                    fill: 'both',
+                    iterations: Infinity,
+                    easing: 'ease-in-out',
+                }
+            )
+        })
+    }
+
+    /*=============================================
+            =           Partical JS        =
+    =============================================*/
+    if ($('.about-area-six').length) {
+        const colors = ['#FF4D4D', '#1AD6FF', '#FFCD4D', '#BB6BD9', '#1A66FF']
+
+        const numBalls = 30
+        const balls = []
+
+        for (let i = 0; i < numBalls; i++) {
+            let ball = document.createElement('div')
+            ball.classList.add('ball')
+            ball.style.background = colors[Math.floor(Math.random() * colors.length)]
+            ball.style.left = `${Math.floor(Math.random() * 100)}%`
+            ball.style.top = `${Math.floor(Math.random() * 100)}%`
+            ball.style.transform = `scale(${Math.random()})`
+            ball.style.width = `${Math.random() * 10}px`
+            ball.style.height = ball.style.width
+            balls.push(ball)
+
+            $('.about-area-six').append(ball)
+        }
+
+        balls.forEach((el, i, ra) => {
+            let to = {
+                x: Math.random() * (i % 2 === 0 ? -10 : 11),
+                y: Math.random() * 12,
+            }
+
+            let anim = el.animate(
+                [{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }],
+                {
+                    duration: (Math.random() + 1) * 2000,
+                    direction: 'alternate',
+                    fill: 'both',
+                    iterations: Infinity,
+                    easing: 'ease-in-out',
+                }
+            )
+        })
+    }
+
+    /*=============================================
+            =           Partical JS        =
+    =============================================*/
+    if ($('.testimonial-area-five').length) {
+        const colors = ['#FF4D4D', '#1AD6FF', '#FFCD4D', '#BB6BD9', '#1A66FF']
+
+        const numBalls = 30
+        const balls = []
+
+        for (let i = 0; i < numBalls; i++) {
+            let ball = document.createElement('div')
+            ball.classList.add('ball')
+            ball.style.background = colors[Math.floor(Math.random() * colors.length)]
+            ball.style.left = `${Math.floor(Math.random() * 100)}%`
+            ball.style.top = `${Math.floor(Math.random() * 100)}%`
+            ball.style.transform = `scale(${Math.random()})`
+            ball.style.width = `${Math.random() * 10}px`
+            ball.style.height = ball.style.width
+            balls.push(ball)
+
+            $('.testimonial-area-five').append(ball)
+        }
+
+        balls.forEach((el, i, ra) => {
+            let to = {
+                x: Math.random() * (i % 2 === 0 ? -10 : 11),
+                y: Math.random() * 12,
+            }
+
+            let anim = el.animate(
+                [{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }],
+                {
+                    duration: (Math.random() + 1) * 2000,
+                    direction: 'alternate',
+                    fill: 'both',
+                    iterations: Infinity,
+                    easing: 'ease-in-out',
+                }
+            )
+        })
+    }
+
+    /*=============================================
+        =          easyPieChart Active          =
+    =============================================*/
+    function easyPieChart() {
+        if ($('.circle-item').length === 0) {
+            return
+        }
+
+        $('.circle-item').on('inview', function (event, isInView) {
+            let borderColor = $(this).data('color')
+            if (isInView) {
+                $('.chart').easyPieChart({
+                    scaleLength: 0,
+                    lineWidth: 10,
+                    trackWidth: 10,
+                    size: 160,
+                    rotate: 360,
+                    animate: 3000,
+                    trackColor: '#2A3E66',
+                    barColor: borderColor,
+                })
+            }
+        })
+    }
+    easyPieChart()
+
+    /*-------------------------------------
+    Intersection Observer
+    -------------------------------------*/
+    if (!!window.IntersectionObserver) {
+        let observer = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active-animation')
+                        //entry.target.src = entry.target.dataset.src;
+                        observer.unobserve(entry.target)
+                    }
+                })
+            },
+            {
+                rootMargin: '0px 0px -100px 0px',
+            }
+        )
+        document.querySelectorAll('.has-animation').forEach((block) => {
+            observer.observe(block)
+        })
+    } else {
+        document.querySelectorAll('.has-animation').forEach((block) => {
+            block.classList.remove('has-animation')
+        })
+    }
+
+
+    /*=============================================
+        =    		 Jarallax Active  	         =
+    =============================================*/
+    if (typeof jarallax !== 'undefined') {
+        $('.jarallax').jarallax({
+            speed: 0.2,
+        })
+    }
+
+    /*=============================================
+        =    		Odometer Active  	       =
+    =============================================*/
+    if ($('.odometer').length !== 0) {
+        $('.odometer').appear(function (e) {
+            var odo = $('.odometer')
+            odo.each(function () {
+                var countNumber = $(this).attr('data-count')
+                $(this).html(countNumber)
+            })
+        })
+    }
+
+    /*=============================================
+        =    		 Wow Active  	         =
+    =============================================*/
+    function wowAnimation() {
+        var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: false,
+            live: true,
+        })
+        wow.init()
+    }
+
+    /*=============================================
+        =           Aos Active       =
+    =============================================*/
+    function aosAnimation() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                mirror: true,
+                once: true,
+                disable: 'mobile',
+            })
+        }
+    }
+
+    /*=============================================
+        =           Trigger Esc       =
+     */
+
+    $(document).keyup(function (event) {
+        if (event.key === 'Escape') {
+            $('.search-popup-wrap').slideUp(500)
+            $('.extra-info,.offcanvas-overly').removeClass('active')
+        }
+    })
+
+    // Custom
+    const $announcementContainer = $('.ae-anno-announcement-wrapper')
+    const $announcementData = $('[data-bb-toggle="announcement"]')
+
+    if ($announcementContainer.length && $announcementData.length) {
+        setTimeout(() => {
+            getHeightAnnouncement()
+        }, 500)
+
+        $announcementContainer.on('click',  '.ae-anno-announcement__arrow, .ae-anno-announcement__dismiss-button', function() {
+            getHeightAnnouncement()
+        })
+
+        $(window).resize(function(){
+            getHeightAnnouncement()
+        });
+
+        function getHeightAnnouncement() {
+            const height = $announcementContainer.outerHeight() || 0
+
+            $($announcementData.data('bb-target')).css('--height-announcement', height + 'px')
+        }
+    }
+
+    $("[data-countdown]").each(function () {
+        const currentTarget = $(this)
+
+        const finalDate = currentTarget.data("countdown");
+        $(this).countdown(finalDate, function (event) {
+            currentTarget.html(event.strftime(`
+                <div class="countdown-item"><span class="countdown-amount">%D</span> <span class="countdown-period">${currentTarget.data('days-text')}</span></div>
+                <div class="countdown-item"><span class="countdown-amount">%H</span> <span class="countdown-period">${currentTarget.data('hours-text')}</span></div>
+                <div class="countdown-item"><span class="countdown-amount">%M</span> <span class="countdown-period">${currentTarget.data('minutes-text')}</span></div>
+                <div class="countdown-item"><span class="countdown-amount">%S</span> <span class="countdown-period">${currentTarget.data('seconds-text')}</span></div>
+            `));
+        });
+    })
+})
+
+
+

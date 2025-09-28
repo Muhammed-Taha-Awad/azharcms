@@ -1,4 +1,4 @@
-﻿@for ($i = 1; $i <= 4; $i++)
+@for ($i = 1; $i <= 4; $i++)
     <fieldset class="border rounded-3 p-3 mb-3">
         <legend class="float-none w-auto px-2">{{ __('Location :number', ['number' => $i]) }}</legend>
         <div class="row g-3">

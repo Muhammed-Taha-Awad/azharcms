@@ -1,4 +1,4 @@
-﻿@php
+@php
     $filters = collect(range(1, 4))->map(function ($index) use ($shortcode) {
         $label = $shortcode->{"filter_label_{$index}"} ?? null;
         $value = $shortcode->{"filter_value_{$index}"} ?? null;

@@ -1,4 +1,4 @@
-﻿@php use Illuminate\Support\Arr; use Illuminate\Support\Str; @endphp
+@php use Illuminate\Support\Arr; use Illuminate\Support\Str; @endphp
 @php
      = collect(range(1, 6))->map(function (
         

@@ -1,4 +1,4 @@
-﻿@php
+@php
     $label = $shortcode->label ?? null;
     $quote = $shortcode->quote ?? null;
     $authorName = $shortcode->author_name ?? null;

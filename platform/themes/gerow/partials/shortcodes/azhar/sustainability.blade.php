@@ -1,4 +1,4 @@
-﻿<section class="sustainability-section" @if ($shortcode->background_image) style="background-image: url('{{ RvMedia::getImageUrl($shortcode->background_image) }}');" @endif>
+<section class="sustainability-section" @if ($shortcode->background_image) style="background-image: url('{{ RvMedia::getImageUrl($shortcode->background_image) }}');" @endif>
     <div class="sustainability-content-container">
         @if ($shortcode->title)
             <h2 class="sustainability-title">{!! BaseHelper::clean($shortcode->title) !!}</h2>

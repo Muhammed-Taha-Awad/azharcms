@@ -1,4 +1,4 @@
-﻿<div class="row g-3">
+<div class="row g-3">
     <div class="col-md-6">
         <label class="form-label">{{ __('Active tab (number)') }}</label>
         <input class="form-control" type="number" name="active_tab" min="1" value="{{ data_get($attributes, 'active_tab', 1) }}" />

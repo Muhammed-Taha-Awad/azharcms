@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $description = collect([
         $shortcode->description_1 ?? null,
         $shortcode->description_2 ?? null,
@@ -48,6 +47,7 @@
         </div>
     </div>
 </section>
+
 
 
 

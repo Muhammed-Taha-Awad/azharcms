@@ -15,7 +15,7 @@
         return (object) [
             'title' =>  ?: __('Tab :number', ['number' => ]),
             'content' => ,
-            'id' => ->{"tab_id_{}"} ?: Str::slug( ?: 'tab-' . ),
+            'id' => ->{"tab_id_{}"} ?: \\Illuminate\\Support\\Str::slug( ?: 'tab-' . ),
         ];
     })->filter()->values();
 
@@ -59,3 +59,4 @@
         </div>
     </section>
 @endif
+

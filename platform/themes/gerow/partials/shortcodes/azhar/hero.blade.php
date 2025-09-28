@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $slides = collect(range(1, 5))->map(function ($index) use ($shortcode) {
         $image = $shortcode->{"image_{$index}"} ?? null;
         $title = $shortcode->{"title_{$index}"} ?? null;
@@ -70,6 +69,7 @@
         </div>
     </section>
 @endif
+
 
 
 

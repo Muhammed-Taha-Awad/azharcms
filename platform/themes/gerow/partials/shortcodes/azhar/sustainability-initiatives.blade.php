@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $label = $shortcode->label ?? null;
     $title = $shortcode->title ?? null;
     $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
@@ -62,6 +61,7 @@
         </div>
     </section>
 @endif
+
 
 
 

@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $imageUrl = $shortcode->image ? RvMedia::getImageUrl($shortcode->image) : null;
     $notice = $shortcode->notice ?? null;
     $subtitle = $shortcode->subtitle ?? null;
@@ -46,6 +45,7 @@
         </div>
     </div>
 </section>
+
 
 
 

@@ -1,24 +1,23 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-<div class="row g-3">
+﻿<div class="row g-3">
     <div class="col-md-4">
         <label class="form-label">{{ __('Section title') }}</label>
-        <input class="form-control" name="title" value="{{ Arr::get($attributes, 'title') }}" />
+        <input class="form-control" name="title" value="{{ data_get($attributes, 'title') }}" />
     </div>
     <div class="col-md-4">
         <label class="form-label">{{ __('Default filter label') }}</label>
-        <input class="form-control" name="filter_default_label" value="{{ Arr::get($attributes, 'filter_default_label', __('ALL INDUSTRIES')) }}" />
+        <input class="form-control" name="filter_default_label" value="{{ data_get($attributes, 'filter_default_label', __('ALL INDUSTRIES')) }}" />
     </div>
     <div class="col-md-4">
         <label class="form-label">{{ __('Background image') }}</label>
-        {!! Form::mediaImage('background_image', Arr::get($attributes, 'background_image')) !!}
+        {!! Form::mediaImage('background_image', data_get($attributes, 'background_image')) !!}
     </div>
     <div class="col-md-6">
         <label class="form-label">{{ __('Button label') }}</label>
-        <input class="form-control" name="button_label" value="{{ Arr::get($attributes, 'button_label') }}" />
+        <input class="form-control" name="button_label" value="{{ data_get($attributes, 'button_label') }}" />
     </div>
     <div class="col-md-6">
         <label class="form-label">{{ __('Button URL') }}</label>
-        <input class="form-control" name="button_url" value="{{ Arr::get($attributes, 'button_url') }}" />
+        <input class="form-control" name="button_url" value="{{ data_get($attributes, 'button_url') }}" />
     </div>
 </div>
 
@@ -28,11 +27,11 @@
     @for ($i = 1; $i <= 4; $i++)
         <div class="col-md-6">
             <label class="form-label">{{ __('Filter :number label', ['number' => $i]) }}</label>
-            <input class="form-control" name="filter_label_{{ $i }}" value="{{ Arr::get($attributes, 'filter_label_' . $i) }}" />
+            <input class="form-control" name="filter_label_{{ $i }}" value="{{ data_get($attributes, 'filter_label_' . $i) }}" />
         </div>
         <div class="col-md-6 mb-3">
             <label class="form-label">{{ __('Filter :number value (optional)', ['number' => $i]) }}</label>
-            <input class="form-control" name="filter_value_{{ $i }}" value="{{ Arr::get($attributes, 'filter_value_' . $i) }}" />
+            <input class="form-control" name="filter_value_{{ $i }}" value="{{ data_get($attributes, 'filter_value_' . $i) }}" />
         </div>
     @endfor
 </div>
@@ -45,27 +44,27 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label class="form-label">{{ __('Category') }}</label>
-                <input class="form-control" name="card_category_{{ $i }}" value="{{ Arr::get($attributes, 'card_category_' . $i) }}" />
+                <input class="form-control" name="card_category_{{ $i }}" value="{{ data_get($attributes, 'card_category_' . $i) }}" />
             </div>
             <div class="col-md-8">
                 <label class="form-label">{{ __('Title') }}</label>
-                <input class="form-control" name="card_title_{{ $i }}" value="{{ Arr::get($attributes, 'card_title_' . $i) }}" />
+                <input class="form-control" name="card_title_{{ $i }}" value="{{ data_get($attributes, 'card_title_' . $i) }}" />
             </div>
             <div class="col-md-12">
                 <label class="form-label">{{ __('Description') }}</label>
-                <textarea class="form-control" name="card_description_{{ $i }}" rows="3">{{ Arr::get($attributes, 'card_description_' . $i) }}</textarea>
+                <textarea class="form-control" name="card_description_{{ $i }}" rows="3">{{ data_get($attributes, 'card_description_' . $i) }}</textarea>
             </div>
             <div class="col-md-6">
                 <label class="form-label">{{ __('Link label') }}</label>
-                <input class="form-control" name="card_link_label_{{ $i }}" value="{{ Arr::get($attributes, 'card_link_label_' . $i) }}" />
+                <input class="form-control" name="card_link_label_{{ $i }}" value="{{ data_get($attributes, 'card_link_label_' . $i) }}" />
             </div>
             <div class="col-md-6">
                 <label class="form-label">{{ __('Link URL') }}</label>
-                <input class="form-control" name="card_link_url_{{ $i }}" value="{{ Arr::get($attributes, 'card_link_url_' . $i) }}" />
+                <input class="form-control" name="card_link_url_{{ $i }}" value="{{ data_get($attributes, 'card_link_url_' . $i) }}" />
             </div>
             <div class="col-md-12">
                 <label class="form-label">{{ __('Image') }}</label>
-                {!! Form::mediaImage('card_image_' . $i, Arr::get($attributes, 'card_image_' . $i)) !!}
+                {!! Form::mediaImage('card_image_' . $i, data_get($attributes, 'card_image_' . $i)) !!}
             </div>
         </div>
         @if ($i === 1)
@@ -73,6 +72,7 @@
         @endif
     </fieldset>
 @endfor
+
 
 
 

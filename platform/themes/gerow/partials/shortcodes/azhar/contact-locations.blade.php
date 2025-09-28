@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $locations = collect(range(1, 4))->map(function ($index) use ($shortcode) {
         $title = $shortcode->{"location_title_{$index}"} ?? null;
         $address = $shortcode->{"location_address_{$index}"} ?? null;
@@ -67,6 +66,7 @@
         </div>
     </section>
 @endif
+
 
 
 

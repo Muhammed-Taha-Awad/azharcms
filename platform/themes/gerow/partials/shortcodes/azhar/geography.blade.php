@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-<section class="geography-section" @if ($shortcode->background_image) style="background-image: url('{{ RvMedia::getImageUrl($shortcode->background_image) }}');" @endif>
+﻿<section class="geography-section" @if ($shortcode->background_image) style="background-image: url('{{ RvMedia::getImageUrl($shortcode->background_image) }}');" @endif>
     <div class="geography-content-container">
         @if ($shortcode->title)
             <h2 class="geography-title">{!! BaseHelper::clean($shortcode->title) !!}</h2>
@@ -15,6 +14,7 @@
         @endif
     </div>
 </section>
+
 
 
 

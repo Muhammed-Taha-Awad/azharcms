@@ -1,5 +1,4 @@
-﻿@php use Illuminate\Support\Arr; @endphp
-@php
+﻿@php
     $label = $shortcode->label ?? null;
     $title = $shortcode->title ?? null;
     $description = $shortcode->description ?? null;
@@ -27,6 +26,7 @@
         </div>
     </div>
 </section>
+
 
 
 

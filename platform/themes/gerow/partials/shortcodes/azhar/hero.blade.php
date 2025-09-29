@@ -1,27 +1,45 @@
-@php
-    $slides = collect(range(1, 5))->map(function ($index) use ($shortcode) {
-        $image = $shortcode->{"image_{$index}"} ?? null;
-        $title = $shortcode->{"title_{$index}"} ?? null;
-        $subtitle = $shortcode->{"subtitle_{$index}"} ?? null;
-        $description = $shortcode->{"description_{$index}"} ?? null;
-        $buttonLabel = $shortcode->{"button_label_{$index}"} ?? null;
-        $buttonUrl = $shortcode->{"button_url_{$index}"} ?? null;
+﻿@php
+    $slides = collect(data_get($shortcode, 'slides', []))
+        ->map(function ($slide) {
+            return (object) [
+                'image' => data_get($slide, 'image'),
+                'title' => data_get($slide, 'title'),
+                'subtitle' => data_get($slide, 'subtitle'),
+                'description' => data_get($slide, 'description'),
+                'button_label' => data_get($slide, 'button_label'),
+                'button_url' => data_get($slide, 'button_url'),
+            ];
+        })
+        ->filter(function ($slide) {
+            return $slide->image || $slide->title || $slide->subtitle || $slide->description;
+        });
 
-        if (! $image && ! $title && ! $subtitle && ! $description) {
-            return null;
-        }
+    if ($slides->isEmpty()) {
+        $slides = collect(range(1, 5))->map(function ($index) use ($shortcode) {
+            $image = $shortcode->{"image_{$index}"} ?? null;
+            $title = $shortcode->{"title_{$index}"} ?? null;
+            $subtitle = $shortcode->{"subtitle_{$index}"} ?? null;
+            $description = $shortcode->{"description_{$index}"} ?? null;
+            $buttonLabel = $shortcode->{"button_label_{$index}"} ?? null;
+            $buttonUrl = $shortcode->{"button_url_{$index}"} ?? null;
 
-        return (object) [
-            'image' => $image,
-            'title' => $title,
-            'subtitle' => $subtitle,
-            'description' => $description,
-            'button_label' => $buttonLabel,
-            'button_url' => $buttonUrl,
-        ];
-    })->filter();
+            if (! $image && ! $title && ! $subtitle && ! $description) {
+                return null;
+            }
+
+            return (object) [
+                'image' => $image,
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'description' => $description,
+                'button_label' => $buttonLabel,
+                'button_url' => $buttonUrl,
+            ];
+        })->filter();
+    }
 
     $highlight = $shortcode->highlight_text ?? null;
+    $firstSlide = $slides->first();
 @endphp
 
 @if ($slides->isNotEmpty())
@@ -56,30 +74,17 @@
                 @if ($highlight)
                     <p class="whats-new">{{ $highlight }}</p>
                 @endif
-                @if ($slides->first()->title)
-                    <h1 class="hero-title">{!! BaseHelper::clean($slides->first()->title) !!}</h1>
+                @if ($firstSlide && $firstSlide->title)
+                    <h1 class="hero-title">{!! BaseHelper::clean($firstSlide->title) !!}</h1>
                 @endif
-                @if ($slides->first()->description)
-                    <p class="hero-description">{!! BaseHelper::clean($slides->first()->description) !!}</p>
+                @if ($firstSlide && $firstSlide->description)
+                    <p class="hero-description">{!! BaseHelper::clean($firstSlide->description) !!}</p>
                 @endif
-                @if ($slides->first()->button_label && $slides->first()->button_url)
-                    <a class="discover-btn" href="{{ $slides->first()->button_url }}">{{ $slides->first()->button_label }}</a>
+                @if ($firstSlide && $firstSlide->button_label && $firstSlide->button_url)
+                    <a class="discover-btn" href="{{ $firstSlide->button_url }}">{{ $firstSlide->button_label }}</a>
                 @endif
             </div>
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

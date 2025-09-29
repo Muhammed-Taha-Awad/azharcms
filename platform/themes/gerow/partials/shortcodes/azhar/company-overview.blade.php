@@ -1,22 +1,40 @@
-@php
+﻿@php
     $description = collect([
         $shortcode->description_1 ?? null,
         $shortcode->description_2 ?? null,
     ])->filter();
 
-    $metrics = collect(range(1, 4))->map(function ($index) use ($shortcode) {
-        $value = $shortcode->{"metric_value_{$index}"} ?? null;
-        $label = $shortcode->{"metric_label_{$index}"} ?? null;
+    $metrics = collect(data_get($shortcode, 'metrics', []))
+        ->map(function ($metric) {
+            $value = data_get($metric, 'value');
+            $label = data_get($metric, 'label');
 
-        if (! $value && ! $label) {
-            return null;
-        }
+            if (! $value && ! $label) {
+                return null;
+            }
 
-        return (object) [
-            'value' => $value,
-            'label' => $label,
-        ];
-    })->filter();
+            return (object) [
+                'value' => $value,
+                'label' => $label,
+            ];
+        })
+        ->filter();
+
+    if ($metrics->isEmpty()) {
+        $metrics = collect(range(1, 4))->map(function ($index) use ($shortcode) {
+            $value = $shortcode->{"metric_value_{$index}"} ?? null;
+            $label = $shortcode->{"metric_label_{$index}"} ?? null;
+
+            if (! $value && ! $label) {
+                return null;
+            }
+
+            return (object) [
+                'value' => $value,
+                'label' => $label,
+            ];
+        })->filter();
+    }
 @endphp
 
 <section class="company-overview-section">
@@ -47,17 +65,4 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
 

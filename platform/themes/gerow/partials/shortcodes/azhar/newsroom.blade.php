@@ -1,25 +1,42 @@
-@php
-    $items = collect(range(1, 3))->map(function ($index) use ($shortcode) {
-        $title = $shortcode->{"item_title_{$index}"} ?? null;
-        $excerpt = $shortcode->{"item_excerpt_{$index}"} ?? null;
-        $image = $shortcode->{"item_image_{$index}"} ?? null;
-        $date = $shortcode->{"item_date_{$index}"} ?? null;
-        $tag = $shortcode->{"item_tag_{$index}"} ?? null;
-        $url = $shortcode->{"item_url_{$index}"} ?? null;
+﻿@php
+    $items = collect(data_get($shortcode, 'items', []))
+        ->map(function ($item) {
+            return (object) [
+                'title' => data_get($item, 'title'),
+                'excerpt' => data_get($item, 'excerpt'),
+                'image' => data_get($item, 'image'),
+                'date' => data_get($item, 'date'),
+                'tag' => data_get($item, 'tag'),
+                'url' => data_get($item, 'url'),
+            ];
+        })
+        ->filter(function ($item) {
+            return $item->title || $item->excerpt || $item->image;
+        });
 
-        if (! $title && ! $excerpt && ! $image) {
-            return null;
-        }
+    if ($items->isEmpty()) {
+        $items = collect(range(1, 3))->map(function ($index) use ($shortcode) {
+            $title = $shortcode->{"item_title_{$index}"} ?? null;
+            $excerpt = $shortcode->{"item_excerpt_{$index}"} ?? null;
+            $image = $shortcode->{"item_image_{$index}"} ?? null;
+            $date = $shortcode->{"item_date_{$index}"} ?? null;
+            $tag = $shortcode->{"item_tag_{$index}"} ?? null;
+            $url = $shortcode->{"item_url_{$index}"} ?? null;
 
-        return (object) [
-            'title' => $title,
-            'excerpt' => $excerpt,
-            'image' => $image,
-            'date' => $date,
-            'tag' => $tag,
-            'url' => $url,
-        ];
-    })->filter();
+            if (! $title && ! $excerpt && ! $image) {
+                return null;
+            }
+
+            return (object) [
+                'title' => $title,
+                'excerpt' => $excerpt,
+                'image' => $image,
+                'date' => $date,
+                'tag' => $tag,
+                'url' => $url,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($items->isNotEmpty())
@@ -66,17 +83,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

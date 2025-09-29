@@ -1,17 +1,35 @@
-@php
-    $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
-        $title = $shortcode->{"card_title_{$index}"} ?? null;
-        $url = $shortcode->{"card_url_{$index}"} ?? null;
+﻿@php
+    $cards = collect(data_get($shortcode, 'explore_cards', []))
+        ->map(function ($card) {
+            $title = data_get($card, 'title');
+            $url = data_get($card, 'url') ?: '#';
 
-        if (! $title && ! $url) {
-            return null;
-        }
+            if (! $title) {
+                return null;
+            }
 
-        return (object) [
-            'title' => $title,
-            'url' => $url ?: '#',
-        ];
-    })->filter();
+            return (object) [
+                'title' => $title,
+                'url' => $url,
+            ];
+        })
+        ->filter();
+
+    if ($cards->isEmpty()) {
+        $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
+            $title = $shortcode->{"card_title_{$index}"} ?? null;
+            $url = $shortcode->{"card_url_{$index}"} ?? null;
+
+            if (! $title && ! $url) {
+                return null;
+            }
+
+            return (object) [
+                'title' => $title,
+                'url' => $url ?: '#',
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($cards->isNotEmpty())
@@ -40,17 +58,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

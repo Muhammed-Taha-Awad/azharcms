@@ -468,3 +468,73 @@ app()->booted(function () {
 
 
 
+\n\n
+
+
+
+
+
+
+if (! function_exists('azhar_normalize_shortcode_attributes')) {
+    function azhar_normalize_shortcode_attributes(
+        array|object|\Illuminate\Support\Collection $attributes,
+        string $baseKey
+    ): array {
+        if ($attributes instanceof \Illuminate\Support\Collection) {
+            $attributes = $attributes->toArray();
+        }
+
+        if (is_object($attributes)) {
+            if (property_exists($attributes, 'attributes')) {
+                $attributes = (array) $attributes->attributes;
+            } else {
+                $attributes = (array) $attributes;
+            }
+        }
+
+        if (! is_array($attributes)) {
+            return [];
+        }
+
+        $direct = $attributes[$baseKey] ?? null;
+
+        if (is_string($direct)) {
+            $decoded = json_decode(html_entity_decode($direct, ENT_QUOTES), true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                return array_values($decoded);
+            }
+        } elseif (is_array($direct)) {
+            return array_values($direct);
+        }
+
+        $pattern = '/^' . preg_quote($baseKey, '/') . '\\[(\\d+)\\]\\[(.+?)\\]$/';
+
+        $result = [];
+
+        foreach ($attributes as $key => $value) {
+            if (! is_string($key)) {
+                continue;
+            }
+
+            if (preg_match($pattern, $key, $matches)) {
+                $index = (int) $matches[1];
+                $field = $matches[2];
+
+                $result[$index][$field] = $value;
+            }
+        }
+
+        if (! $result) {
+            return [];
+        }
+
+        ksort($result);
+
+        return array_values(array_map(function (array $item) {
+            ksort($item);
+
+            return $item;
+        }, $result));
+    }
+}

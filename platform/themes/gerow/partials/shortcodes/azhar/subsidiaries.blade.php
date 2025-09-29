@@ -1,31 +1,62 @@
-@php
-    $links = collect(range(1, 3))->map(function ($index) use ($shortcode) {
-        $label = $shortcode->{"header_link_label_{$index}"} ?? null;
-        $url = $shortcode->{"header_link_url_{$index}"} ?? null;
+﻿@php
+    $links = collect(data_get($shortcode, 'header_links', []))
+        ->map(function ($link) {
+            $label = data_get($link, 'label');
+            $url = data_get($link, 'url');
 
-        if (! $label || ! $url) {
-            return null;
-        }
+            if (! $label || ! $url) {
+                return null;
+            }
 
-        return (object) [
-            'label' => $label,
-            'url' => $url,
-        ];
-    })->filter();
+            return (object) [
+                'label' => $label,
+                'url' => $url,
+            ];
+        })
+        ->filter();
 
-    $items = collect(range(1, 6))->map(function ($index) use ($shortcode) {
-        $image = $shortcode->{"item_image_{$index}"} ?? null;
-        $category = $shortcode->{"item_category_{$index}"} ?? null;
+    if ($links->isEmpty()) {
+        $links = collect(range(1, 3))->map(function ($index) use ($shortcode) {
+            $label = $shortcode->{"header_link_label_{$index}"} ?? null;
+            $url = $shortcode->{"header_link_url_{$index}"} ?? null;
 
-        if (! $image && ! $category) {
-            return null;
-        }
+            if (! $label || ! $url) {
+                return null;
+            }
 
-        return (object) [
-            'image' => $image,
-            'category' => $category,
-        ];
-    })->filter();
+            return (object) [
+                'label' => $label,
+                'url' => $url,
+            ];
+        })->filter();
+    }
+
+    $items = collect(data_get($shortcode, 'items', []))
+        ->map(function ($item) {
+            return (object) [
+                'image' => data_get($item, 'image'),
+                'category' => data_get($item, 'category'),
+            ];
+        })
+        ->filter(function ($item) {
+            return $item->image || $item->category;
+        });
+
+    if ($items->isEmpty()) {
+        $items = collect(range(1, 6))->map(function ($index) use ($shortcode) {
+            $image = $shortcode->{"item_image_{$index}"} ?? null;
+            $category = $shortcode->{"item_category_{$index}"} ?? null;
+
+            if (! $image && ! $category) {
+                return null;
+            }
+
+            return (object) [
+                'image' => $image,
+                'category' => $category,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($items->isNotEmpty())
@@ -61,17 +92,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

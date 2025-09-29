@@ -1,27 +1,45 @@
-@php
-    $locations = collect(range(1, 4))->map(function ($index) use ($shortcode) {
-        $title = $shortcode->{"location_title_{$index}"} ?? null;
-        $address = $shortcode->{"location_address_{$index}"} ?? null;
-        $phone = $shortcode->{"location_phone_{$index}"} ?? null;
-        $directionsLabel = $shortcode->{"location_link_label_{$index}"} ?? null;
-        $directionsUrl = $shortcode->{"location_link_url_{$index}"} ?? null;
-        $mapEmbed = $shortcode->{"location_map_embed_{$index}"} ?? null;
-        $mapUrl = $shortcode->{"location_map_url_{$index}"} ?? null;
+﻿@php
+    $locations = collect(data_get($shortcode, 'locations', []))
+        ->map(function ($location) {
+            return (object) [
+                'title' => data_get($location, 'title'),
+                'address' => data_get($location, 'address'),
+                'phone' => data_get($location, 'phone'),
+                'directions_label' => data_get($location, 'link_label') ?: __('Get Directions'),
+                'directions_url' => data_get($location, 'link_url'),
+                'map_embed' => data_get($location, 'map_embed'),
+                'map_url' => data_get($location, 'map_url'),
+            ];
+        })
+        ->filter(function ($location) {
+            return $location->title || $location->address || $location->phone || $location->map_embed || $location->map_url;
+        });
 
-        if (! $title && ! $address && ! $phone && ! $mapEmbed && ! $mapUrl) {
-            return null;
-        }
+    if ($locations->isEmpty()) {
+        $locations = collect(range(1, 4))->map(function ($index) use ($shortcode) {
+            $title = $shortcode->{"location_title_{$index}"} ?? null;
+            $address = $shortcode->{"location_address_{$index}"} ?? null;
+            $phone = $shortcode->{"location_phone_{$index}"} ?? null;
+            $directionsLabel = $shortcode->{"location_link_label_{$index}"} ?? null;
+            $directionsUrl = $shortcode->{"location_link_url_{$index}"} ?? null;
+            $mapEmbed = $shortcode->{"location_map_embed_{$index}"} ?? null;
+            $mapUrl = $shortcode->{"location_map_url_{$index}"} ?? null;
 
-        return (object) [
-            'title' => $title,
-            'address' => $address,
-            'phone' => $phone,
-            'directions_label' => $directionsLabel ?: __('Get Directions →'),
-            'directions_url' => $directionsUrl,
-            'map_embed' => $mapEmbed,
-            'map_url' => $mapUrl,
-        ];
-    })->filter();
+            if (! $title && ! $address && ! $phone && ! $mapEmbed && ! $mapUrl) {
+                return null;
+            }
+
+            return (object) [
+                'title' => $title,
+                'address' => $address,
+                'phone' => $phone,
+                'directions_label' => $directionsLabel ?: __('Get Directions'),
+                'directions_url' => $directionsUrl,
+                'map_embed' => $mapEmbed,
+                'map_url' => $mapUrl,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($locations->isNotEmpty())
@@ -38,7 +56,7 @@
                                 width="100%"
                                 height="300"
                                 style="border:0;"
-                                allowfullscreen=""
+                                allowfullscreen
                                 loading="lazy"
                             ></iframe>
                         @endif
@@ -66,17 +84,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

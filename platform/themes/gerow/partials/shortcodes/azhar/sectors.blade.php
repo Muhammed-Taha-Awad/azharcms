@@ -1,19 +1,33 @@
-@php
-    $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
-        $title = $shortcode->{"card_title_{$index}"} ?? null;
-        $description = $shortcode->{"card_description_{$index}"} ?? null;
-        $image = $shortcode->{"card_image_{$index}"} ?? null;
+﻿@php
+    $cards = collect(data_get($shortcode, 'cards', []))
+        ->map(function ($card) {
+            return (object) [
+                'title' => data_get($card, 'title'),
+                'description' => data_get($card, 'description'),
+                'image' => data_get($card, 'image'),
+            ];
+        })
+        ->filter(function ($card) {
+            return $card->title || $card->description || $card->image;
+        });
 
-        if (! $title && ! $description && ! $image) {
-            return null;
-        }
+    if ($cards->isEmpty()) {
+        $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
+            $title = $shortcode->{"card_title_{$index}"} ?? null;
+            $description = $shortcode->{"card_description_{$index}"} ?? null;
+            $image = $shortcode->{"card_image_{$index}"} ?? null;
 
-        return (object) [
-            'title' => $title,
-            'description' => $description,
-            'image' => $image,
-        ];
-    })->filter();
+            if (! $title && ! $description && ! $image) {
+                return null;
+            }
+
+            return (object) [
+                'title' => $title,
+                'description' => $description,
+                'image' => $image,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($cards->isNotEmpty())
@@ -59,17 +73,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

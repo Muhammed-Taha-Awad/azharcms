@@ -1,23 +1,38 @@
-@php
+﻿@php
     $label = $shortcode->label ?? null;
     $title = $shortcode->title ?? null;
-    $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
-        $category = $shortcode->{"card_category_{$index}"} ?? null;
-        $cardTitle = $shortcode->{"card_title_{$index}"} ?? null;
-        $description = $shortcode->{"card_description_{$index}"} ?? null;
-        $image = $shortcode->{"card_image_{$index}"} ?? null;
+    $cards = collect(data_get($shortcode, 'cards', []))
+        ->map(function ($card) {
+            return (object) [
+                'category' => data_get($card, 'category'),
+                'title' => data_get($card, 'title'),
+                'description' => data_get($card, 'description'),
+                'image' => data_get($card, 'image'),
+            ];
+        })
+        ->filter(function ($card) {
+            return $card->title || $card->description || $card->image;
+        });
 
-        if (! $cardTitle && ! $description && ! $image) {
-            return null;
-        }
+    if ($cards->isEmpty()) {
+        $cards = collect(range(1, 6))->map(function ($index) use ($shortcode) {
+            $category = $shortcode->{"card_category_{$index}"} ?? null;
+            $cardTitle = $shortcode->{"card_title_{$index}"} ?? null;
+            $description = $shortcode->{"card_description_{$index}"} ?? null;
+            $image = $shortcode->{"card_image_{$index}"} ?? null;
 
-        return (object) [
-            'category' => $category,
-            'title' => $cardTitle,
-            'description' => $description,
-            'image' => $image,
-        ];
-    })->filter();
+            if (! $cardTitle && ! $description && ! $image) {
+                return null;
+            }
+
+            return (object) [
+                'category' => $category,
+                'title' => $cardTitle,
+                'description' => $description,
+                'image' => $image,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($cards->isNotEmpty())
@@ -61,17 +76,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

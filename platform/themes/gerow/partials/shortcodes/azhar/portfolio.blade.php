@@ -1,40 +1,75 @@
+﻿@php use Illuminate\Support\Str; @endphp
 @php
-    $filters = collect(range(1, 4))->map(function ($index) use ($shortcode) {
-        $label = $shortcode->{"filter_label_{$index}"} ?? null;
-        $value = $shortcode->{"filter_value_{$index}"} ?? null;
+    $filters = collect(data_get($shortcode, 'filters', []))
+        ->map(function ($filter) {
+            $label = data_get($filter, 'label');
+            $value = data_get($filter, 'value');
 
-        if (! $label) {
-            return null;
-        }
+            if (! $label) {
+                return null;
+            }
 
-        return (object) [
-            'label' => $label,
-            'value' => $value ?: \Illuminate.Support\\\Illuminate\\Support\\Str::slug($label),
-        ];
-    })->filter();
+            return (object) [
+                'label' => $label,
+                'value' => $value ?: Str::slug($label),
+            ];
+        })
+        ->filter();
 
-    $cards = collect(range(1, 4))->map(function ($index) use ($shortcode) {
-        $category = $shortcode->{"card_category_{$index}"} ?? null;
-        $title = $shortcode->{"card_title_{$index}"} ?? null;
-        $description = $shortcode->{"card_description_{$index}"} ?? null;
-        $image = $shortcode->{"card_image_{$index}"} ?? null;
-        $linkLabel = $shortcode->{"card_link_label_{$index}"} ?? null;
-        $linkUrl = $shortcode->{"card_link_url_{$index}"} ?? null;
+    if ($filters->isEmpty()) {
+        $filters = collect(range(1, 4))->map(function ($index) use ($shortcode) {
+            $label = $shortcode->{"filter_label_{$index}"} ?? null;
+            $value = $shortcode->{"filter_value_{$index}"} ?? null;
 
-        if (! $title && ! $description && ! $image) {
-            return null;
-        }
+            if (! $label) {
+                return null;
+            }
 
-        return (object) [
-            'category' => $category,
-            'title' => $title,
-            'description' => $description,
-            'image' => $image,
-            'link_label' => $linkLabel,
-            'link_url' => $linkUrl,
-            'variant' => $index === 1 ? 'featured' : 'dark',
-        ];
-    })->filter();
+            return (object) [
+                'label' => $label,
+                'value' => $value ?: Str::slug($label),
+            ];
+        })->filter();
+    }
+
+    $cards = collect(data_get($shortcode, 'cards', []))
+        ->map(function ($card) {
+            return (object) [
+                'category' => data_get($card, 'category'),
+                'title' => data_get($card, 'title'),
+                'description' => data_get($card, 'description'),
+                'image' => data_get($card, 'image'),
+                'link_label' => data_get($card, 'link_label'),
+                'link_url' => data_get($card, 'link_url'),
+            ];
+        })
+        ->filter(function ($card) {
+            return $card->title || $card->description || $card->image;
+        });
+
+    if ($cards->isEmpty()) {
+        $cards = collect(range(1, 4))->map(function ($index) use ($shortcode) {
+            $category = $shortcode->{"card_category_{$index}"} ?? null;
+            $title = $shortcode->{"card_title_{$index}"} ?? null;
+            $description = $shortcode->{"card_description_{$index}"} ?? null;
+            $image = $shortcode->{"card_image_{$index}"} ?? null;
+            $linkLabel = $shortcode->{"card_link_label_{$index}"} ?? null;
+            $linkUrl = $shortcode->{"card_link_url_{$index}"} ?? null;
+
+            if (! $title && ! $description && ! $image) {
+                return null;
+            }
+
+            return (object) [
+                'category' => $category,
+                'title' => $title,
+                'description' => $description,
+                'image' => $image,
+                'link_label' => $linkLabel,
+                'link_url' => $linkUrl,
+            ];
+        })->filter();
+    }
 @endphp
 
 @if ($cards->isNotEmpty())
@@ -57,8 +92,9 @@
             </div>
             <div class="portfolio-cards-row">
                 @foreach ($cards as $card)
-                    <div class="portfolio-card @if ($card->variant === 'featured') featured-card @else dark-card @endif">
-                        @if ($card->variant === 'featured')
+                    @php $isFeatured = $loop->first; @endphp
+                    <div class="portfolio-card {{ $isFeatured ? 'featured-card' : 'dark-card' }}">
+                        @if ($isFeatured)
                             <div class="card-content">
                                 @if ($card->category)
                                     <p class="card-category">{{ $card->category }}</p>
@@ -108,22 +144,4 @@
         </div>
     </section>
 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

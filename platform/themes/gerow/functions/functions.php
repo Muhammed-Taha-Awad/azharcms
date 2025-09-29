@@ -20,7 +20,9 @@ use Botble\Portfolio\Models\Service;
 use Botble\Portfolio\Models\ServiceCategory;
 use Botble\Theme\Facades\Theme;
 use Botble\Theme\Supports\ThemeSupport;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 register_page_template([
     'default' => __('Default'),
@@ -467,65 +469,32 @@ app()->booted(function () {
 
 
 if (! function_exists('azhar_normalize_shortcode_attributes')) {
-    function azhar_normalize_shortcode_attributes(
-        array|object|\Illuminate\Support\Collection $attributes,
-        string $baseKey
-    ): array {
-        if ($attributes instanceof \Illuminate\Support\Collection) {
+    /**
+     * Normalize shortcode attributes into a flat array regardless of the provided input type.
+     */
+    function azhar_normalize_shortcode_attributes(array|object $attributes, array $defaults = []): array
+    {
+        if ($attributes instanceof Collection) {
+            $attributes = $attributes->all();
+        } elseif ($attributes instanceof Arrayable) {
             $attributes = $attributes->toArray();
-        }
-
-        if (is_object($attributes)) {
-            if (property_exists($attributes, 'attributes')) {
-                $attributes = (array) $attributes->attributes;
-            } else {
-                $attributes = (array) $attributes;
-            }
+        } elseif ($attributes instanceof \Traversable) {
+            $attributes = iterator_to_array($attributes);
+        } elseif (is_object($attributes)) {
+            $attributes = get_object_vars($attributes);
         }
 
         if (! is_array($attributes)) {
-            return [];
+            $attributes = [];
         }
 
-        $direct = $attributes[$baseKey] ?? null;
-
-        if (is_string($direct)) {
-            $decoded = json_decode(html_entity_decode($direct, ENT_QUOTES), true);
-
-            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                return array_values($decoded);
-            }
-        } elseif (is_array($direct)) {
-            return array_values($direct);
+        if ($defaults !== []) {
+            $attributes = array_merge($defaults, $attributes);
         }
 
-        $pattern = '/^' . preg_quote($baseKey, '/') . '\\[(\\d+)\\]\\[(.+?)\\]$/';
-
-        $result = [];
-
-        foreach ($attributes as $key => $value) {
-            if (! is_string($key)) {
-                continue;
-            }
-
-            if (preg_match($pattern, $key, $matches)) {
-                $index = (int) $matches[1];
-                $field = $matches[2];
-
-                $result[$index][$field] = $value;
-            }
-        }
-
-        if (! $result) {
-            return [];
-        }
-
-        ksort($result);
-
-        return array_values(array_map(function (array $item) {
-            ksort($item);
-
-            return $item;
-        }, $result));
+        return array_filter(
+            $attributes,
+            static fn ($value) => $value !== null
+        );
     }
 }

@@ -466,15 +466,6 @@ app()->booted(function () {
 });
 
 
-
-
-\n\n
-
-
-
-
-
-
 if (! function_exists('azhar_normalize_shortcode_attributes')) {
     function azhar_normalize_shortcode_attributes(
         array|object|\Illuminate\Support\Collection $attributes,

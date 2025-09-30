@@ -1,7 +1,7 @@
 ﻿@include(Theme::getThemeNamespace() . '::partials.shortcodes.azhar._repeater-assets')
 
 @php
-    $metrics = data_get($attributes, 'metrics');
+    $metrics = azhar_decode_shortcode_json_attribute($attributes, 'metrics');
 
     if (! is_array($metrics) || empty($metrics)) {
         $metrics = collect(range(1, 4))

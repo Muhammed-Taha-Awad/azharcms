@@ -1,5 +1,5 @@
 ﻿@php
-    $items = collect(data_get($shortcode, 'items', []))
+    $items = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'items') ?? [])
         ->map(function ($item) {
             return (object) [
                 'title' => data_get($item, 'title'),

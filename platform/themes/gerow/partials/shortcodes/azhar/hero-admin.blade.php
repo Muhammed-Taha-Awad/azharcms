@@ -2,7 +2,7 @@
 
 @php use Illuminate\Support\Str; @endphp
 @php
-    $slides = data_get($attributes, 'slides');
+    $slides = azhar_decode_shortcode_json_attribute($attributes, 'slides');
 
     if (! is_array($slides) || empty($slides)) {
         $slides = collect(range(1, 5))

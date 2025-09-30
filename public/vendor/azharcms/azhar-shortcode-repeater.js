@@ -32,7 +32,13 @@
 
     function markRepeaterInputs($container) {
         $container.find(':input[name]').each(function () {
-            $(this).attr('data-azhar-repeater-input', 'true');
+            const $input = $(this);
+
+            if ($input.is('[data-azhar-repeater-json]')) {
+                return;
+            }
+
+            $input.attr('data-azhar-repeater-input', 'true');
         });
     }
 

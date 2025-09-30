@@ -1,7 +1,7 @@
 ﻿@include(Theme::getThemeNamespace() . '::partials.shortcodes.azhar._repeater-assets')
 
 @php
-    $headerLinks = data_get($attributes, 'header_links');
+    $headerLinks = azhar_decode_shortcode_json_attribute($attributes, 'header_links');
 
     if (! is_array($headerLinks) || empty($headerLinks)) {
         $headerLinks = collect(range(1, 3))

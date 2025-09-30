@@ -1,7 +1,7 @@
 ﻿@php
     $label = $shortcode->label ?? null;
     $title = $shortcode->title ?? null;
-    $cards = collect(data_get($shortcode, 'cards', []))
+    $cards = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'cards') ?? [])
         ->map(function ($card) {
             return (object) [
                 'category' => data_get($card, 'category'),

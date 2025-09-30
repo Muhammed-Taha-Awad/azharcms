@@ -1,5 +1,5 @@
 ﻿@php
-    $locations = collect(data_get($shortcode, 'locations', []))
+    $locations = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'locations') ?? [])
         ->map(function ($location) {
             return (object) [
                 'title' => data_get($location, 'title'),

@@ -18,9 +18,12 @@ use Botble\Page\Models\Page;
 use Botble\Portfolio\Models\Package;
 use Botble\Portfolio\Models\Service;
 use Botble\Portfolio\Models\ServiceCategory;
+use Botble\Shortcode\Compilers\Shortcode as ShortcodeAttributes;
 use Botble\Theme\Facades\Theme;
 use Botble\Theme\Supports\ThemeSupport;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 register_page_template([
     'default' => __('Default'),
@@ -464,6 +467,48 @@ app()->booted(function () {
         }
     }, arguments: 3);
 });
+
+if (! function_exists('azhar_normalize_shortcode_attributes')) {
+    /**
+     * Normalize shortcode attributes into a flat array regardless of the provided input type.
+     */
+    function azhar_normalize_shortcode_attributes(mixed $attributes, array $defaults = []): array
+    {
+        if ($attributes instanceof ShortcodeAttributes) {
+            $attributes = $attributes->toArray();
+        } elseif ($attributes instanceof Collection) {
+            $attributes = $attributes->all();
+        } elseif ($attributes instanceof Arrayable) {
+            $attributes = $attributes->toArray();
+        } elseif ($attributes instanceof \Traversable) {
+            $attributes = iterator_to_array($attributes);
+        } elseif (is_object($attributes)) {
+            $attributes = method_exists($attributes, 'toArray') ? (array) $attributes->toArray() : get_object_vars($attributes);
+        } elseif (is_string($attributes)) {
+            $decoded = json_decode($attributes, true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $attributes = $decoded;
+            } else {
+                parse_str($attributes, $parsed);
+                $attributes = $parsed;
+            }
+        }
+
+        if (! is_array($attributes)) {
+            $attributes = [];
+        }
+
+        if ($defaults !== []) {
+            $attributes = array_merge($defaults, $attributes);
+        }
+
+        return array_filter(
+            $attributes,
+            static fn ($value) => $value !== null
+        );
+    }
+}
 
 
 

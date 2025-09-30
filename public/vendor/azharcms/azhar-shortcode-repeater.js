@@ -52,6 +52,50 @@
         });
     }
 
+    function sanitizeRepeaterJson(value) {
+        if (typeof value !== 'string') {
+            return '';
+        }
+
+        return value
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, "'")
+            .replace(/&#39;/g, "'");
+    }
+
+    function parseRepeaterItems(value) {
+        if (typeof value !== 'string') {
+            return null;
+        }
+
+        const attempts = [value];
+        const sanitized = sanitizeRepeaterJson(value);
+
+        if (sanitized !== value) {
+            attempts.push(sanitized);
+        }
+
+        for (let index = 0; index < attempts.length; index++) {
+            const attempt = attempts[index];
+
+            if (!attempt || !attempt.trim().length) {
+                continue;
+            }
+
+            try {
+                const parsed = JSON.parse(attempt);
+
+                if (Array.isArray(parsed)) {
+                    return parsed;
+                }
+            } catch (error) {
+                // Ignore JSON parse errors, we'll try the next attempt.
+            }
+        }
+
+        return null;
+    }
+
     function getFieldKey(name, listName) {
         const match = name.match(/\[[^\]]+\]$/);
 
@@ -137,6 +181,50 @@
         $target.val(JSON.stringify(items));
     }
 
+    function loadInitialRepeaterValues($wrapper, repeater) {
+        if (!repeater || typeof repeater.setList !== 'function') {
+            return;
+        }
+
+        const $target = $wrapper.find('[data-azhar-repeater-json]').first();
+
+        if (!$target.length) {
+            return;
+        }
+
+        const items = parseRepeaterItems($target.val());
+
+        if (!items || !items.length) {
+            return;
+        }
+
+        const normalizedItems = items.filter(function (item) {
+            return item && typeof item === 'object' && !Array.isArray(item);
+        });
+
+        if (!normalizedItems.length) {
+            return;
+        }
+
+        repeater.setList(normalizedItems);
+
+        markRepeaterInputs($wrapper);
+
+        if (window.Botble) {
+            window.Botble.initResources();
+            window.Botble.initMediaIntegrate();
+            window.Botble.initCoreIcon();
+        }
+
+        if (window.EDITOR && typeof window.EDITOR.init === 'function') {
+            window.EDITOR.init();
+        } else if (window.EditorManagement) {
+            window.EDITOR = new EditorManagement().init();
+        }
+
+        syncRepeaterData($wrapper);
+    }
+
     function syncAllRepeaters(context) {
         const $context = context ? $(context) : $(document);
 
@@ -168,7 +256,7 @@
 
             markRepeaterInputs($wrapper);
 
-            $wrapper.repeater({
+            const repeater = $wrapper.repeater({
                 initEmpty: false,
                 defaultValues: {},
                 show: function () {
@@ -198,6 +286,8 @@
                     });
                 }
             });
+
+            loadInitialRepeaterValues($wrapper, repeater);
 
             bindRepeaterEvents($wrapper);
             syncRepeaterData($wrapper);

@@ -4,7 +4,7 @@
         $shortcode->description_2 ?? null,
     ])->filter();
 
-    $metrics = collect(data_get($shortcode, 'metrics', []))
+    $metrics = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'metrics') ?? [])
         ->map(function ($metric) {
             $value = data_get($metric, 'value');
             $label = data_get($metric, 'label');

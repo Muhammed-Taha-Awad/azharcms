@@ -1,7 +1,7 @@
 ﻿@include(Theme::getThemeNamespace() . '::partials.shortcodes.azhar._repeater-assets')
 
 @php
-    $locations = data_get($attributes, 'locations');
+    $locations = azhar_decode_shortcode_json_attribute($attributes, 'locations');
 
     if (! is_array($locations) || empty($locations)) {
         $locations = collect(range(1, 4))

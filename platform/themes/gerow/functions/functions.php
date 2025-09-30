@@ -498,34 +498,33 @@ if (! function_exists('azhar_normalize_shortcode_attributes')) {
     }
 }
 
-
-if (! function_exists('azhar_normalize_shortcode_attributes')) {
+if (! function_exists('azhar_decode_shortcode_json_attribute')) {
     /**
-     * Normalize shortcode attributes into a flat array regardless of the provided input type.
+     * Decode a JSON-encoded shortcode attribute into an array when possible.
      */
-    function azhar_normalize_shortcode_attributes(array|object $attributes, array $defaults = []): array
+    function azhar_decode_shortcode_json_attribute(array|object $attributes, string $key): ?array
     {
-        if ($attributes instanceof Collection) {
-            $attributes = $attributes->all();
-        } elseif ($attributes instanceof Arrayable) {
-            $attributes = $attributes->toArray();
-        } elseif ($attributes instanceof \Traversable) {
-            $attributes = iterator_to_array($attributes);
-        } elseif (is_object($attributes)) {
-            $attributes = get_object_vars($attributes);
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
+        $value = data_get($attributes, $key);
+
+        if (is_array($value)) {
+            return $value;
         }
 
-        if (! is_array($attributes)) {
-            $attributes = [];
+        if (! is_string($value) || trim($value) === '') {
+            return null;
         }
 
-        if ($defaults !== []) {
-            $attributes = array_merge($defaults, $attributes);
-        }
-
-        return array_filter(
-            $attributes,
-            static fn ($value) => $value !== null
+        $decoded = json_decode(
+            str_replace(
+                ['“', '”', '„', '‟'],
+                '"',
+                str_replace(['‘', '’'], "'", html_entity_decode($value))
+            ),
+            true
         );
+
+        return json_last_error() === JSON_ERROR_NONE && is_array($decoded) ? $decoded : null;
     }
 }

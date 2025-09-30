@@ -1,6 +1,6 @@
 ﻿@php use Illuminate\Support\Str; @endphp
 @php
-    $tabs = collect(data_get($shortcode, 'tabs', []))
+    $tabs = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'tabs') ?? [])
         ->map(function ($tab) {
             return [
                 'title' => data_get($tab, 'title'),

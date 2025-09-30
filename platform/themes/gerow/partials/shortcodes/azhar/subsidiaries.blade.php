@@ -1,5 +1,5 @@
 ﻿@php
-    $links = collect(data_get($shortcode, 'header_links', []))
+    $links = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'header_links') ?? [])
         ->map(function ($link) {
             $label = data_get($link, 'label');
             $url = data_get($link, 'url');
@@ -31,7 +31,7 @@
         })->filter();
     }
 
-    $items = collect(data_get($shortcode, 'items', []))
+    $items = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'items') ?? [])
         ->map(function ($item) {
             return (object) [
                 'image' => data_get($item, 'image'),

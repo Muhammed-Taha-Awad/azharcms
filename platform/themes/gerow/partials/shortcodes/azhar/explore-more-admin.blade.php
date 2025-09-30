@@ -1,7 +1,7 @@
 ﻿@include(Theme::getThemeNamespace() . '::partials.shortcodes.azhar._repeater-assets')
 
 @php
-    $cards = data_get($attributes, 'explore_cards');
+    $cards = azhar_decode_shortcode_json_attribute($attributes, 'explore_cards');
 
     if (! is_array($cards) || empty($cards)) {
         $cards = collect(range(1, 6))

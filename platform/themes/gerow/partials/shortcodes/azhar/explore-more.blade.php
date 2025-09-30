@@ -1,5 +1,5 @@
 ﻿@php
-    $cards = collect(data_get($shortcode, 'explore_cards', []))
+    $cards = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'explore_cards') ?? [])
         ->map(function ($card) {
             $title = data_get($card, 'title');
             $url = data_get($card, 'url') ?: '#';

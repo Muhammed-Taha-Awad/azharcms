@@ -1,5 +1,5 @@
 ﻿@php
-    $slides = collect(data_get($shortcode, 'slides', []))
+    $slides = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'slides') ?? [])
         ->map(function ($slide) {
             return (object) [
                 'image' => data_get($slide, 'image'),

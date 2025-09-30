@@ -467,6 +467,37 @@ app()->booted(function () {
     }, arguments: 3);
 });
 
+if (! function_exists('azhar_normalize_shortcode_attributes')) {
+    /**
+     * Normalize shortcode attributes into a flat array regardless of the provided input type.
+     */
+    function azhar_normalize_shortcode_attributes(array|object $attributes, array $defaults = []): array
+    {
+        if ($attributes instanceof Collection) {
+            $attributes = $attributes->all();
+        } elseif ($attributes instanceof Arrayable) {
+            $attributes = $attributes->toArray();
+        } elseif ($attributes instanceof \Traversable) {
+            $attributes = iterator_to_array($attributes);
+        } elseif (is_object($attributes)) {
+            $attributes = get_object_vars($attributes);
+        }
+
+        if (! is_array($attributes)) {
+            $attributes = [];
+        }
+
+        if ($defaults !== []) {
+            $attributes = array_merge($defaults, $attributes);
+        }
+
+        return array_filter(
+            $attributes,
+            static fn ($value) => $value !== null
+        );
+    }
+}
+
 
 if (! function_exists('azhar_normalize_shortcode_attributes')) {
     /**

@@ -108,7 +108,16 @@
             return;
         }
 
-        const listName = $list.data('repeater-list');
+        let listName = $list.attr('data-repeater-list');
+
+        if (!listName) {
+            listName = $list.data('repeaterList') || $list.data('repeater-list');
+        }
+
+        if (!listName) {
+            return;
+        }
+
         const $target = $wrapper.find(`[data-azhar-repeater-json="${listName}"]`).first();
 
         if (!$target.length) {

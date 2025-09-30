@@ -1,6 +1,6 @@
 ﻿@php use Illuminate\Support\Str; @endphp
 @php
-    $filters = collect(data_get($shortcode, 'filters', []))
+    $filters = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'filters') ?? [])
         ->map(function ($filter) {
             $label = data_get($filter, 'label');
             $value = data_get($filter, 'value');
@@ -32,7 +32,7 @@
         })->filter();
     }
 
-    $cards = collect(data_get($shortcode, 'cards', []))
+    $cards = collect(azhar_decode_shortcode_json_attribute($shortcode->toArray(), 'cards') ?? [])
         ->map(function ($card) {
             return (object) [
                 'category' => data_get($card, 'category'),

@@ -1,7 +1,7 @@
 ﻿@include(Theme::getThemeNamespace() . '::partials.shortcodes.azhar._repeater-assets')
 
 @php
-    $tabs = data_get($attributes, 'tabs');
+    $tabs = azhar_decode_shortcode_json_attribute($attributes, 'tabs');
 
     if (! is_array($tabs) || empty($tabs)) {
         $customIds = collect(explode(',', data_get($attributes, 'custom_tab_ids', '')))

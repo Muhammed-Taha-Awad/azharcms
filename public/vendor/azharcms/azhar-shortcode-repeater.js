@@ -1,8 +1,14 @@
-﻿(function ($) {
+(function ($) {
     'use strict';
 
-    if (!$.fn._azharSerializeObjectPatched) {
-        $.fn._azharSerializeObjectPatched = true;
+    function patchSerializeObject() {
+        if ($.fn._azharSerializeObjectPatched) {
+            return;
+        }
+
+        if (typeof $.fn.serializeObject !== 'function') {
+            return;
+        }
 
         const originalSerializeObject = $.fn.serializeObject;
 
@@ -28,7 +34,11 @@
 
             return result;
         };
+
+        $.fn._azharSerializeObjectPatched = true;
     }
+
+    patchSerializeObject();
 
     function markRepeaterInputs($container) {
         $container.find(':input[name]').each(function () {
@@ -118,6 +128,14 @@
         $target.val(JSON.stringify(items));
     }
 
+    function syncAllRepeaters(context) {
+        const $context = context ? $(context) : $(document);
+
+        $context.find('.azhar-repeater').each(function () {
+            syncRepeaterData($(this));
+        });
+    }
+
     function bindRepeaterEvents($wrapper) {
         $wrapper.on('change.azharRepeater keyup.azharRepeater', ':input', function () {
             syncRepeaterData($wrapper);
@@ -125,6 +143,8 @@
     }
 
     function initRepeaters(context) {
+        patchSerializeObject();
+
         const $context = context ? $(context) : $(document);
 
         $context.find('.azhar-repeater').each(function () {
@@ -177,6 +197,7 @@
 
     window.AzharShortcodeRepeater = {
         init: initRepeaters,
+        syncAll: syncAllRepeaters,
     };
 
     $(document).ready(function () {
@@ -189,5 +210,13 @@
 
     $(document).on('botble.plugin.shortcode.init', function (event) {
         initRepeaters(event.target);
+    });
+
+    $(document).on('core-shortcode-config-loaded', function (event) {
+        initRepeaters(event.target);
+    });
+
+    $(document).on('click.azharRepeater', '[data-bb-toggle="shortcode-add-single"]', function () {
+        syncAllRepeaters($('.shortcode-data-form'));
     });
 })(jQuery);

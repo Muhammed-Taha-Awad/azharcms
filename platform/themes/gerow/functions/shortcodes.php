@@ -26,7 +26,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.hero', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-hero', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-hero', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.hero-admin', compact('attributes'));
     });
 
@@ -34,7 +36,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.company-overview', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-company-overview', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-company-overview', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.company-overview-admin', compact('attributes'));
     });
 
@@ -42,7 +46,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sectors', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sectors', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sectors', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sectors-admin', compact('attributes'));
     });
 
@@ -50,7 +56,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.newsroom', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-newsroom', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-newsroom', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.newsroom-admin', compact('attributes'));
     });
 
@@ -58,7 +66,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.portfolio', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-portfolio', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-portfolio', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.portfolio-admin', compact('attributes'));
     });
 
@@ -66,7 +76,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sustainability', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sustainability', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sustainability', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sustainability-admin', compact('attributes'));
     });
 
@@ -74,7 +86,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.subsidiaries', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-subsidiaries', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-subsidiaries', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.subsidiaries-admin', compact('attributes'));
     });
 
@@ -82,7 +96,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.geography', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-geography', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-geography', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.geography-admin', compact('attributes'));
     });
 
@@ -90,7 +106,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.page-hero', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-page-hero', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-page-hero', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.page-hero-admin', compact('attributes'));
     });
 
@@ -98,7 +116,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.explore-more', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-explore-more', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-explore-more', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.explore-more-admin', compact('attributes'));
     });
 
@@ -106,7 +126,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.about-tabs', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-about-tabs', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-about-tabs', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.about-tabs-admin', compact('attributes'));
     });
 
@@ -145,7 +167,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.contact-form', compact('shortcode', 'form'));
     });
 
-    Shortcode::setAdminConfig('azhar-contact-form', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-contact-form', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.contact-form-admin', compact('attributes'));
     });
 
@@ -153,7 +177,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.contact-locations', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-contact-locations', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-contact-locations', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.contact-locations-admin', compact('attributes'));
     });
 
@@ -161,7 +187,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sustainability-report', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sustainability-report', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sustainability-report', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sustainability-report-admin', compact('attributes'));
     });
 
@@ -169,7 +197,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.esg-strategy', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-esg-strategy', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-esg-strategy', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.esg-strategy-admin', compact('attributes'));
     });
 
@@ -177,7 +207,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sustainability-approach', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sustainability-approach', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sustainability-approach', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sustainability-approach-admin', compact('attributes'));
     });
 
@@ -185,7 +217,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sustainability-policies', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sustainability-policies', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sustainability-policies', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sustainability-policies-admin', compact('attributes'));
     });
 
@@ -193,7 +227,9 @@ app()->booted(function () {
         return Theme::partial('shortcodes.azhar.sustainability-initiatives', compact('shortcode'));
     });
 
-    Shortcode::setAdminConfig('azhar-sustainability-initiatives', function (array $attributes): ?string {
+    Shortcode::setAdminConfig('azhar-sustainability-initiatives', function ($attributes): ?string {
+        $attributes = azhar_normalize_shortcode_attributes($attributes);
+
         return Theme::partial('shortcodes.azhar.sustainability-initiatives-admin', compact('attributes'));
     });
 

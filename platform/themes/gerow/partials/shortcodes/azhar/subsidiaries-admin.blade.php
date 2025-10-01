@@ -23,7 +23,7 @@
             ->all();
     }
 
-    $items = data_get($attributes, 'items');
+    $items = azhar_decode_shortcode_json_attribute($attributes, 'items');
 
     if (! is_array($items) || empty($items)) {
         $items = collect(range(1, 6))
@@ -102,45 +102,49 @@
 <hr>
 
 <h5>{{ __('Subsidiary items') }}</h5>
-<div data-repeater-list="items">
-    @forelse ($items as $item)
-        <div data-repeater-item class="border rounded-3 p-3 mb-3">
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label">{{ __('Category / label') }}</label>
-                    <input class="form-control" name="category" value="{{ data_get($item, 'category') }}" />
+<div class="azhar-repeater">
+    <input type="hidden" name="items" data-azhar-repeater-json="items" value='@json($items)' />
+    <div data-repeater-list="items">
+        @forelse ($items as $item)
+            <div data-repeater-item class="border rounded-3 p-3 mb-3">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
                 </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Logo image') }}</label>
-                    {!! Form::mediaImage('image', data_get($item, 'image'), ['value' => data_get($item, 'image')]) !!}
-                </div>
-            </div>
-        </div>
-    @empty
-        <div data-repeater-item class="border rounded-3 p-3 mb-3">
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label">{{ __('Category / label') }}</label>
-                    <input class="form-control" name="category" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Logo image') }}</label>
-                    {!! Form::mediaImage('image', null) !!}
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Category / label') }}</label>
+                        <input class="form-control" name="category" value="{{ data_get($item, 'category') }}" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Logo image') }}</label>
+                        {!! Form::mediaImage('image', data_get($item, 'image'), ['value' => data_get($item, 'image')]) !!}
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforelse
-</div>
-<div class="mt-3">
-    <button type="button" class="btn btn-outline-primary" data-repeater-create>
-        {{ __('Add subsidiary') }}
-    </button>
+        @empty
+            <div data-repeater-item class="border rounded-3 p-3 mb-3">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Category / label') }}</label>
+                        <input class="form-control" name="category" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Logo image') }}</label>
+                        {!! Form::mediaImage('image', null) !!}
+                    </div>
+                </div>
+            </div>
+        @endforelse
+    </div>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-outline-primary" data-repeater-create>
+            {{ __('Add subsidiary') }}
+        </button>
+    </div>
 </div>
 </div>
 

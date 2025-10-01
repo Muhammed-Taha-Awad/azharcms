@@ -127,83 +127,87 @@
 <hr>
 
 <h5>{{ __('Portfolio cards') }}</h5>
-<div data-repeater-list="cards">
-    @forelse ($cards as $index => $card)
-        <div data-repeater-item class="border rounded-3 p-3 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="fw-medium">{{ __('Card #:number', ['number' => $index + 1]) }}</span>
-                <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
+<div class="azhar-repeater">
+    <input type="hidden" name="cards" data-azhar-repeater-json="cards" value='@json($cards)' />
+    <div data-repeater-list="cards">
+        @forelse ($cards as $index => $card)
+            <div data-repeater-item class="border rounded-3 p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fw-medium">{{ __('Card #:number', ['number' => $index + 1]) }}</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Category') }}</label>
+                        <input class="form-control" name="category" value="{{ data_get($card, 'category') }}" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Title') }}</label>
+                        <input class="form-control" name="title" value="{{ data_get($card, 'title') }}" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Description') }}</label>
+                        <textarea class="form-control" name="description" rows="3">{{ data_get($card, 'description') }}</textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Link label') }}</label>
+                        <input class="form-control" name="link_label" value="{{ data_get($card, 'link_label') }}" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Link URL') }}</label>
+                        <input class="form-control" name="link_url" value="{{ data_get($card, 'link_url') }}" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Image') }}</label>
+                        {!! Form::mediaImage('image', data_get($card, 'image'), ['value' => data_get($card, 'image')]) !!}
+                    </div>
+                </div>
+                @if ($index === 0)
+                    <p class="text-muted small mt-2">{{ __('The first card is displayed as the featured item with image on the right and CTA button.') }}</p>
+                @endif
             </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label">{{ __('Category') }}</label>
-                    <input class="form-control" name="category" value="{{ data_get($card, 'category') }}" />
+        @empty
+            <div data-repeater-item class="border rounded-3 p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fw-medium">{{ __('Card #1') }}</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
                 </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Title') }}</label>
-                    <input class="form-control" name="title" value="{{ data_get($card, 'title') }}" />
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Category') }}</label>
+                        <input class="form-control" name="category" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Title') }}</label>
+                        <input class="form-control" name="title" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Description') }}</label>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Link label') }}</label>
+                        <input class="form-control" name="link_label" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Link URL') }}</label>
+                        <input class="form-control" name="link_url" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">{{ __('Image') }}</label>
+                        {!! Form::mediaImage('image', null) !!}
+                    </div>
                 </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Description') }}</label>
-                    <textarea class="form-control" name="description" rows="3">{{ data_get($card, 'description') }}</textarea>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Link label') }}</label>
-                    <input class="form-control" name="link_label" value="{{ data_get($card, 'link_label') }}" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Link URL') }}</label>
-                    <input class="form-control" name="link_url" value="{{ data_get($card, 'link_url') }}" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Image') }}</label>
-                    {!! Form::mediaImage('image', data_get($card, 'image'), ['value' => data_get($card, 'image')]) !!}
-                </div>
-            </div>
-            @if ($index === 0)
                 <p class="text-muted small mt-2">{{ __('The first card is displayed as the featured item with image on the right and CTA button.') }}</p>
-            @endif
-        </div>
-    @empty
-        <div data-repeater-item class="border rounded-3 p-3 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="fw-medium">{{ __('Card #1') }}</span>
-                <button type="button" class="btn btn-sm btn-outline-danger" data-repeater-delete>&times;</button>
             </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label">{{ __('Category') }}</label>
-                    <input class="form-control" name="category" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Title') }}</label>
-                    <input class="form-control" name="title" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Description') }}</label>
-                    <textarea class="form-control" name="description" rows="3"></textarea>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Link label') }}</label>
-                    <input class="form-control" name="link_label" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Link URL') }}</label>
-                    <input class="form-control" name="link_url" />
-                </div>
-                <div class="col-12">
-                    <label class="form-label">{{ __('Image') }}</label>
-                    {!! Form::mediaImage('image', null) !!}
-                </div>
-            </div>
-            <p class="text-muted small mt-2">{{ __('The first card is displayed as the featured item with image on the right and CTA button.') }}</p>
-        </div>
-    @endforelse
-</div>
-<div class="mt-3">
-    <button type="button" class="btn btn-outline-primary" data-repeater-create>
-        {{ __('Add portfolio card') }}
-    </button>
+        @endforelse
+    </div>
+
+    <div class="mt-3">
+        <button type="button" class="btn btn-outline-primary" data-repeater-create>
+            {{ __('Add portfolio card') }}
+        </button>
+    </div>
 </div>
 </div>
 

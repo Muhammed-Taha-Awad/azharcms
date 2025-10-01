@@ -13,6 +13,12 @@
         const originalSerializeObject = $.fn.serializeObject;
 
         $.fn.serializeObject = function () {
+            try {
+                syncAllRepeaters(this);
+            } catch (error) {
+                // Ignore sync errors to preserve original serializeObject behaviour.
+            }
+
             const disabled = [];
 
             this.find('[data-azhar-repeater-input]').each(function () {
